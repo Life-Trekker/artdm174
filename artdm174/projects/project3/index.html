@@ -17,30 +17,31 @@ File Name: index.html for Project 3
 
         <main>
 
-            <h1>Video</h1>
-
-            <div id="player"></div>
-
-
+            <h1>How To Play Carcassonne</h1>
+            <div id="player">The video was unable to load.  Here's a <a href="https://www.youtube.com/watch?v=R1qh-lhxy9s">link</a> to it on YouTube.</div>
 
 
             <div id="controls">
 
-                <button id="start">PLAY</button>
+                <img class="icons" id="start" src="images/playButton.png">
 
-                <button id="pause">PAUSE</button>
+                <img class="icons" id="pause" src="images/pauseButton.png">
 
-                <button id="stop">STOP</button>
+                <img class="icons" id="stop" src="images/stopButton.png">
 
                 
-                <button id="slow-motion">0.5X SPEED</button>
+                <div>
 
-                <button id="normal-speed">1X SPEED</button>
+                    <select id="video-speed-controls">
+                        <option>Select a Playback Speed</option>
+                        <option id="slow-motion">0.25X SPEED</option>
+                        <option id="slower-speed">0.5X SPEED</option>
+                        <option id="normal-speed">1X SPEED</option>
+                        <option id="faster-speed">1.5X SPEED</option>
+                        <option id="fast-forward">2X SPEED</option>
+                    </select>
 
-                <button id="fast-forward">2X SPEED</button>
-
-                <button id="flipNext">NEXT</button>
-                <button id="flipPrev">PREVIOUS</button>
+                </div>
 
                 <div id="skip-to-controls">
                     <h3>Skip to:</h3>
@@ -55,7 +56,13 @@ File Name: index.html for Project 3
 
                 </div>
 
+                <div>
+                    <button id="flipPrev">PREVIOUS PAGE</button>
+                    <button id="flipNext">NEXT PAGE</button>
+                </div>
+
             </div>
+
 
             <div id="book">
                 <img id="leftPage" src="images/rulebookPages/page2.jpeg">
