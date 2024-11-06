@@ -4,34 +4,50 @@ File Name: index.html for Project 3
 -->
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Media Player</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="main.css">
-        <script src="main.js"></script>
-    </head>
 
-    <body>
+<head>
+    <meta charset="UTF-8" />
+    <title>How To Play Carcassonne</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.css">
+    <script src="main.js"></script>
+</head>
 
+<body>
 
-        <main>
-
-            <h1>How To Play Carcassonne</h1>
-            <div id="player">The video was unable to load.  Here's a <a href="https://www.youtube.com/watch?v=R1qh-lhxy9s">link</a> to it on YouTube.</div>
+    <!-- create a heading for the page -->
+    <h1>How To Play Carcassonne</h1>
 
 
+    <main>
+
+        <!-- contain the video and its controls within a div -->
+        <div id="videoCell">
+
+            <!-- create a div that will hold the YouTube player -->
+            <div id="player">
+
+                <!-- if the YouTube player can't display, provide a link to the content -->
+                <p>The video was unable to load. Here's a <a href="https://www.youtube.com/watch?v=R1qh-lhxy9s">link</a> to it on YouTube. </p>
+            </div>
+
+            <!-- create a div that will hold the video controls -->
             <div id="controls">
 
+                <!-- create an image that will function as the play button -->
                 <img class="icons" id="start" src="images/playButton.png">
 
+                <!-- create an image that will function as the pause button -->
                 <img class="icons" id="pause" src="images/pauseButton.png">
 
+                <!-- create an image that will function as the stop button -->
                 <img class="icons" id="stop" src="images/stopButton.png">
 
-                
-                <div>
 
+                <!-- create a div to hold the playback speed controls -->
+                <div id="speed-controls">
+
+                    <!-- create a select dropdown that will hold various playback speed options -->
                     <select id="video-speed-controls">
                         <option>Select a Playback Speed</option>
                         <option id="slow-motion">0.25X SPEED</option>
@@ -46,23 +62,34 @@ File Name: index.html for Project 3
                 <div id="skip-to-controls">
                     <h3>Skip to:</h3>
 
+                    <button id="intro">INTRO</button>
+
                     <button id="setup">SET UP</button>
 
-                    <button id="town">ACTIONS IN TOWN</button>
+                    <button id="placing">PLACING TILES</button>
 
-                    <button id="adventuring">ADVENTURE ACTION</button>
+                    <button id="cities">CITIES</button>
 
-                    <button id="scoring">SCORING</button>
+                    <button id="roads">ROADS</button>
 
-                </div>
+                    <button id="monistaries">MONISTARIES</button>
 
-                <div>
-                    <button id="flipPrev">PREVIOUS PAGE</button>
-                    <button id="flipNext">NEXT PAGE</button>
+                    <button id="farmers">FARMERS</button>
+
+                    <button id="end">END OF GAME</button>
+
                 </div>
 
             </div>
 
+        </div>
+
+        <div id="bookCell">
+
+            <div id="book_controls">
+                <button id="flipPrev">PREVIOUS PAGE</button>
+                <button id="flipNext">NEXT PAGE</button>
+            </div>
 
             <div id="book">
                 <img id="leftPage" src="images/rulebookPages/page2.jpeg">
@@ -73,10 +100,11 @@ File Name: index.html for Project 3
                 </div>
             </div>
 
+        </div>
 
 
-            
-        </main>
+    </main>
 
-    </body>
+</body>
+
 </html>

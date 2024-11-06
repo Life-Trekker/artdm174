@@ -18,11 +18,20 @@ body{
 
     text-align: center;
     background-image: url(images/tinySquaresPattern.png);
-    color: rgb(10, 10, 61);
+    color: rgb(143, 143, 143);
 
-    font-family: Verdana, sans-serif;
+    font-family: Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
+main{
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    margin: 0% 2%;
+
+
+}
 
 
 /* give some margin around every div */
@@ -30,46 +39,18 @@ div{
     margin: 2%;
 }
 
-/* make the audio and video sections rounded boxes
-make the audio section blue
-*/
-#audio-section, #video-section
+#book_controls
 {
-    margin: 2% 10%;
-    padding: 2%;
-    background-color: rgb(136, 201, 222);
-    border-radius: 20px;
+    margin: 0;
 }
 
-/* make the video section indigo */
-#video-section
-{
-
-    background-color: rgb(136, 173, 222);
-
-}
-
-/* put a navy border around the media players
-in a mobile layout, give them a max-width of 50vmin
-*/
-video, audio{
-    border: 5px solid rgb(6, 6, 46);
-
-    max-width: 70vmin;
-}
-
-/* make the captions a light blue and make sure they're never smaller than 14px font */
-::cue {
-    color: #e4f6fd;
-    font-size: max(14px, 2vmin);
-}
 
 #book
 {
     display: flex;
     justify-content: center;
-    height: 100vmin;
-    width: 160vmin;
+    height: 90vmin;
+    width: 130vmin;
 
     margin: 0 auto;
 }
@@ -78,8 +59,8 @@ video, audio{
     position: relative;
 
 
-    height: 100vmin;
-    width: 80vmin;
+    height: 90vmin;
+    width: 65vmin;
 
     margin: 0;
 }
@@ -97,8 +78,8 @@ video, audio{
 
     position: absolute;
 
-    height: 100vmin;
-    width: 80vmin;
+    height: 90vmin;
+    width: 65vmin;
 
     top: 0px;
     left: 0px;
@@ -111,6 +92,10 @@ video, audio{
 #controls
 {
     display: none;
+}
+
+#videoCell{
+    padding: 20% 2% 0 2%;
 }
 
 
@@ -131,42 +116,46 @@ video, audio{
 remove their default borders and give them some margin and padding
 */
 button{
-    background-color: rgb(6, 6, 46);
-    color:rgb(136, 173, 222);
-    font-weight: bold;
+    background-color: rgb(20, 39, 146);
+    border: 2px ridge rgb(255, 196, 0);
 
-    border: none;
+    color:rgb(143, 143, 143);
+    font-weight: bold;
+    
     margin: 2%;
     padding: 10px;
 }
 
 /* remove the default border on the select dropdowns */
 select{
+    color: rgb(143, 143, 143);
+    background-color: rgb(8, 17, 68);
     border: none;
 }
 
-/* place the subheadings in blue-gray boxes
-make the select dropdowns blue-gray too
-*/
-h3, select
-{
-    background-color: rgb(106, 122, 147);
-}
 
 /* place the subheadings in rounded boxes and change their font size 
 make sure they never have less than 10px of vericle margin
 */
 h3
 {
+    background-color: rgb(20, 39, 146);
     margin: max(2%, 10px) 10%;
     border-radius: 50px;
+    padding: 5px;
     font-size: 3vmin;
 }
 
 /* give the headings light blue shadows and some padding */
 h1{
-    background-color: rgb(202, 220, 226);
-    text-shadow: 0px 3px 0px #e4f6fd;
+    color: rgb(255, 196, 0);
+    background-color: rgb(20, 39, 146);
+    text-shadow: -3px 3px 0px #443606;
+
+    font-size: 32pt;
+
+    border-bottom: 10px ridge rgb(8, 17, 68);
+
     padding: 2%;
 
     margin: 0% 0% 2% 0%;
@@ -244,6 +233,27 @@ h1{
         box-shadow: 0px 0px 25px black;
         scale: 5% 100%;
         translate: -40vmin 0px;
+    }
+
+    50%
+    {
+        box-shadow: 25px 0px 20px black;
+    }
+
+    /*when the press animation ends, set the element to a normal size and make it not opaque at all*/
+    100%{
+        scale: 100%;
+        translate: 0vmin 0px;
+    }
+
+}
+
+@keyframes flipToFinal{
+    /*when the pressed animation starts, shrink the element and make it slightly opaque*/
+    0%{
+        box-shadow: 0px 0px 25px black;
+        scale: 5% 100%;
+        translate: 40vmin 0px;
     }
 
     50%

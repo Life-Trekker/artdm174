@@ -154,10 +154,10 @@ function init() {
 
 
     const skipBtns = document.getElementById("skip-to-controls");
-    let skipTimes = [60, 435, 1279, 670];
+    let skipTimes = [0, 60, 142, 404, 521, 587, 606, 670];
 
     for (let i = 1; i < skipBtns.children.length; i++) {
-        skipBtns.children[i].addEventListener("click", (e) => { player.seekTo(skipTimes[i - 1], true); player.playVideo(); });
+        skipBtns.children[i].addEventListener("click", (e) => { player.seekTo(skipTimes[i - 1], true); playMedia; });
     }
 
 
@@ -206,21 +206,20 @@ function init() {
 
 }
 
+var canFlip = true;
+
+const pageSources = ["images/rulebookPages/page1.jpeg", "images/rulebookPages/page2.jpg", "images/rulebookPages/page3.jpeg", "images/rulebookPages/page4.jpeg", 
+                    "images/rulebookPages/page5.jpeg", "images/rulebookPages/page6.jpeg", "images/rulebookPages/page7.jpeg", "images/rulebookPages/page8.jpg"];
+
 
 function flipToPage(newPageSet) {
 
 
-    if (newPageSet >= 1 && newPageSet <= 5 && newPageSet != currentPageSet) {
-
+    if (newPageSet >= 1 && newPageSet <= 5 && newPageSet != currentPageSet && canFlip) {
 
         const leftPage = document.getElementById("leftPage");
         const topPage = document.getElementById("topPage");
         const bottomPage = document.getElementById("bottomPage");
-
-
-
-        const pageSources = ["images/rulebookPages/page1.jpeg", "images/rulebookPages/page2.jpeg", "images/rulebookPages/page3.jpeg", "images/rulebookPages/page4.jpeg", "images/rulebookPages/page5.jpeg", "images/rulebookPages/page6.jpeg", "images/rulebookPages/page7.jpeg", "images/rulebookPages/page8.jpeg"];
-
 
         topPage.style.display = "block";
 
@@ -231,11 +230,16 @@ function flipToPage(newPageSet) {
 
             if (newPageSet === 5) {
                 leftPage.style.display = 'none';
-                bottomPage.src = pageSources[7];
-                afterNextAnim();
+                bottomPage.src = pageSources[5];
+                topPage.src = pageSources[7];
+
+                topPage.style.animation = "flipToFinal 0.8s ease";
+                canFlip = false;
+                setTimeout(afterNextAnim, 795);
             }
             else {
                 bottomPage.src = pageSources[2 * (newPageSet - 1)];
+                canFlip = false;
                 setTimeout(afterNextAnim, 795);
             }
 
@@ -250,13 +254,16 @@ function flipToPage(newPageSet) {
             if (newPageSet === 1) {
                 topPage.src = pageSources[0];
                 leftPage.style.display = 'none';
+                canFlip = false;
                 setTimeout(afterPrevAnim, 795);
+
             }
             else if (currentPageSet === 5) {
                 afterPrevAnim();
             }
             else {
                 topPage.src = pageSources[2 * (newPageSet - 1)];
+                canFlip = false;
                 setTimeout(afterPrevAnim, 795);
             }
 
@@ -267,15 +274,21 @@ function flipToPage(newPageSet) {
 
         function afterNextAnim() {
             topPage.style.display = 'none';
+            canFlip = true;
 
             if (newPageSet != 5) {
                 leftPage.style.display = 'block';
                 leftPage.src = pageSources[2 * (newPageSet - 1) - 1];
             }
+            else
+            {
+                bottomPage.src = pageSources[7];
+            }
         }
 
         function afterPrevAnim() {
             topPage.style.display = 'none';
+            canFlip = true;
 
             if (newPageSet != 1) {
                 leftPage.style.display = 'block';
