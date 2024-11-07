@@ -10,9 +10,9 @@ body, header, nav, main, footer, img, h1, h2, h3, ul, section, aside, figure, fi
     border: 0;
 }
 
-/* by default, center all the text and give it a navy color
-set the page background to the checkerboard-cross pattern
-make the default font Verdana
+/* by default, center all the text and give it a gray color
+set the page background to the tiny squares pattern
+make the default font Cochin
 */
 body{
 
@@ -23,14 +23,42 @@ body{
     font-family: Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
+/* have main display as a single block by default
+when JS is enabled, it will display as a two column grid
+give main a slight margin on the sides
+*/
 main{
 
-    display: grid;
+    display: block;
     grid-template-columns: 1fr 1fr;
 
     margin: 0% 2%;
 
 
+}
+
+/* when JS is disabled, hide all controls and the interactable rulebook */
+.hidden
+{
+    display: none;
+}
+
+/* when JS is disabled, display the rulebook pages in a 4 x 2 grid with a tiny amount of grid gap */
+#bookGrid
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-gap: 10px;
+}
+
+/* size these rulebook pages to 75vmin by 100vmin and center then in their cells */
+#bookGrid img
+{
+    height: 100vmin;
+    width: 75vmin;
+
+    margin: 2% auto;
 }
 
 
@@ -39,12 +67,15 @@ div{
     margin: 2%;
 }
 
+/* execept for the div holding the book control buttons */
 #book_controls
 {
     margin: 0;
 }
 
-
+/* have the left and right page of the interactable rulebook display right next to each other in an area of 130vmin by 90vmin 
+center this book
+*/
 #book
 {
     display: flex;
@@ -55,6 +86,8 @@ div{
     margin: 0 auto;
 }
   
+/* make the right page 65vmin by 90vmin with no margins 
+*/
 #rightPage{
     position: relative;
 
@@ -65,13 +98,18 @@ div{
     margin: 0;
 }
 
+/* make the actual right page take up all the space in its cell */
 #bottomPage
 {
     height: 100%;
     width: 100%;
 }
 
-
+/* make the dummy page display above the actual right page 
+hide it by default
+align it with the top left corner of its cell
+make it 90vmin by 65vmin in size
+*/
 #topPage
 {
     display: none;
@@ -85,15 +123,13 @@ div{
     left: 0px;
 }
 
+/* hide the left page by default, since the first page is the cover */
 #leftPage{
     display: none;
 }
 
-#controls
-{
-    display: none;
-}
 
+/* give the video lots of padding on the top so it is more centered with the rulebook */
 #videoCell{
     padding: 20% 2% 0 2%;
 }
@@ -112,12 +148,13 @@ div{
     animation: pressed 0.8s ease;
 }
 
-/* give the buttons a blue-gray background
-remove their default borders and give them some margin and padding
+/* give the buttons a blue background with gold boarders
+give them some margin and padding
+set the text within them to gray, bold font
 */
 button{
     background-color: rgb(20, 39, 146);
-    border: 2px ridge rgb(255, 196, 0);
+    border: 2px ridge rgb(252, 205, 50);
 
     color:rgb(143, 143, 143);
     font-weight: bold;
@@ -126,7 +163,9 @@ button{
     padding: 10px;
 }
 
-/* remove the default border on the select dropdowns */
+/* remove the default border on the select dropdowns 
+make their text gray and their backgrounds blue
+*/
 select{
     color: rgb(143, 143, 143);
     background-color: rgb(8, 17, 68);
@@ -136,6 +175,7 @@ select{
 
 /* place the subheadings in rounded boxes and change their font size 
 make sure they never have less than 10px of vericle margin
+make them blue in color
 */
 h3
 {
@@ -146,49 +186,35 @@ h3
     font-size: 3vmin;
 }
 
-/* give the headings light blue shadows and some padding */
-h1{
-    color: rgb(255, 196, 0);
+header
+{
     background-color: rgb(20, 39, 146);
-    text-shadow: -3px 3px 0px #443606;
-
-    font-size: 32pt;
-
     border-bottom: 10px ridge rgb(8, 17, 68);
 
     padding: 2%;
 
     margin: 0% 0% 2% 0%;
+}
+
+/* give the headings gold with dark gold shadows and large 26p font */
+h1{
+    color: rgb(252, 205, 50);    
+    text-shadow: -3px 3px 0px #443606;
+
+    font-size: 26pt;
+
 
 }
 
-/* RULES FOR LARGER LAYOUT */
-@media only screen and (min-width : 700px) {
+/* make the paragraph that will display if the video can't load blue with 22pt font */
+p{
+    color: rgb(20, 39, 146);
+    font-size: 22;
+}
 
-    /* change the width of the video and audio */
-    video, audio{
-        max-width: 40vmin;
-    }
-
-    /* increase the width of the audio and video sections */
-    #audio-section, #video-section
-    {
-        width: 20%;
-        margin: 2%;
-
-    }
-
-    /* display the sections in a single row */
-    main{
-        flex-direction: row;
-        justify-content: space-around;
-    }
-
-    /* increase the font size of the subheadings */
-    h3{
-        font-size: 20px;
-    }
-
+/* make the link that will display if the video can't load dark gold */
+a{
+    color: #443606;
 }
 
 
@@ -209,38 +235,41 @@ h1{
 
 
 @keyframes flipToNext{
-    /*when the pressed animation starts, shrink the element and make it slightly opaque*/
+    /*when the flip to next page animation starts, give the element no shadow*/
     0%{
         box-shadow: 0px 0px 25px black;
     }
 
+    /* half way through this animation, give the element a shadow to the left */
     50%
     {
         box-shadow: -25px 0px 20px black;
     }
 
-    /*when the press animation ends, set the element to a normal size and make it not opaque at all*/
+    /*when this animation ends, squish the element horizontally and have it by shifted to the left*/
     100%{
         scale: 5% 100%;
-        translate: -40vmin 0px;
+        translate: -32vmin 0px;
     }
 
 }
 
 @keyframes flipToPrevious{
-    /*when the pressed animation starts, shrink the element and make it slightly opaque*/
+    /*when the flip to previous page animation starts, give the element no shadow*/
+    /* make it squished horizontally and have it shifted to the left */
     0%{
         box-shadow: 0px 0px 25px black;
         scale: 5% 100%;
-        translate: -40vmin 0px;
+        translate: -32vmin 0px;
     }
+
 
     50%
     {
         box-shadow: 25px 0px 20px black;
     }
 
-    /*when the press animation ends, set the element to a normal size and make it not opaque at all*/
+    /*when this animation ends, set the element to a normal size and place it in its normal position*/
     100%{
         scale: 100%;
         translate: 0vmin 0px;
@@ -249,19 +278,21 @@ h1{
 }
 
 @keyframes flipToFinal{
-    /*when the pressed animation starts, shrink the element and make it slightly opaque*/
+    /*when the flip to final page animation starts, give the element no shadow*/
+    /* make it squished horizontally and have it shifted to the right */
     0%{
         box-shadow: 0px 0px 25px black;
         scale: 5% 100%;
-        translate: 40vmin 0px;
+        translate: 32vmin 0px;
     }
 
+    /* half way through this animation, give the element a shadow to the left */
     50%
     {
-        box-shadow: 25px 0px 20px black;
+        box-shadow: -25px 0px 20px black;
     }
 
-    /*when the press animation ends, set the element to a normal size and make it not opaque at all*/
+    /*when this animation ends, set the element to a normal size and place it in its normal position*/
     100%{
         scale: 100%;
         translate: 0vmin 0px;

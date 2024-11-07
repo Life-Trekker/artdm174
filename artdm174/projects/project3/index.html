@@ -5,106 +5,157 @@ File Name: index.html for Project 3
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8" />
-    <title>How To Play Carcassonne</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="main.css">
-    <script src="main.js"></script>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>How To Play Carcassonne</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<body>
+        <!--include the CSS in the main.css file-->
+        <link rel="stylesheet" href="main.css">
+        
+        <!--include the JS in the main.js file-->
+        <script src="main.js" defer></script>
 
-    <!-- create a heading for the page -->
-    <h1>How To Play Carcassonne</h1>
+        <!--include a fabicon-->
+        <link rel="icon" href="images/fabicon.jpg" type="image/jpg">
 
+    </head>
 
-    <main>
+    <body>
 
-        <!-- contain the video and its controls within a div -->
-        <div id="videoCell">
+        <!-- create a header section for the page -->
+        <header>
 
-            <!-- create a div that will hold the YouTube player -->
-            <div id="player">
+            <!-- include a heading that is part text -->
+            <h1>How To Play</h1>
 
-                <!-- if the YouTube player can't display, provide a link to the content -->
-                <p>The video was unable to load. Here's a <a href="https://www.youtube.com/watch?v=R1qh-lhxy9s">link</a> to it on YouTube. </p>
-            </div>
+            <!-- and part image -->
+            <img src="images/title.png" alt="title of the board game Carcassonne">
 
-            <!-- create a div that will hold the video controls -->
-            <div id="controls">
-
-                <!-- create an image that will function as the play button -->
-                <img class="icons" id="start" src="images/playButton.png">
-
-                <!-- create an image that will function as the pause button -->
-                <img class="icons" id="pause" src="images/pauseButton.png">
-
-                <!-- create an image that will function as the stop button -->
-                <img class="icons" id="stop" src="images/stopButton.png">
+        </header>
 
 
-                <!-- create a div to hold the playback speed controls -->
-                <div id="speed-controls">
+        <main>
 
-                    <!-- create a select dropdown that will hold various playback speed options -->
-                    <select id="video-speed-controls">
-                        <option>Select a Playback Speed</option>
-                        <option id="slow-motion">0.25X SPEED</option>
-                        <option id="slower-speed">0.5X SPEED</option>
-                        <option id="normal-speed">1X SPEED</option>
-                        <option id="faster-speed">1.5X SPEED</option>
-                        <option id="fast-forward">2X SPEED</option>
-                    </select>
+            <!-- contain the video and its controls within a div -->
+            <div id="videoCell">
+
+                <!-- create a div that will hold the YouTube player -->
+                <div id="player">
+
+                    <!-- if the YouTube player can't display, provide a link to the content -->
+                    <p>The video was unable to load. Here's a <a href="https://www.youtube.com/watch?v=R1qh-lhxy9s">link</a> to it on YouTube. </p>
+                </div>
+
+                <!-- create a div that will hold the video controls -->
+                <div id="controls" class="hidden">
+
+                    <!-- create an image that will function as the play button -->
+                    <img class="icons" id="start" src="images/playButton.png" alt="navy ring with a play icon inside">
+
+                    <!-- create an image that will function as the pause button -->
+                    <img class="icons" id="pause" src="images/pauseButton.png" alt="navy ring with a pause icon inside">
+
+                    <!-- create an image that will function as the stop button -->
+                    <img class="icons" id="stop" src="images/stopButton.png" alt="navy ring with a stop icon inside">
+
+
+                    <!-- create a div to hold the playback speed controls -->
+                    <div id="speed-controls">
+
+                        <!-- create a select dropdown that will hold various playback speed options -->
+                        <select id="video-speed-controls">
+                            <option>Select a Playback Speed</option>
+                            <option id="slow-motion">0.25X SPEED</option>
+                            <option id="slower-speed">0.5X SPEED</option>
+                            <option id="normal-speed">1X SPEED</option>
+                            <option id="faster-speed">1.5X SPEED</option>
+                            <option id="fast-forward">2X SPEED</option>
+                        </select>
+
+                    </div>
+
+                    <!-- create a div to hold the various video chapters -->
+                    <div id="skip-to-controls">
+
+                        <!-- create a heading for the video chapters -->
+                        <h3>Skip to:</h3>
+
+                        <!-- create buttons to flip to each chapter -->
+
+                        <button id="intro">INTRO</button>
+
+                        <button id="setup">SET UP</button>
+
+                        <button id="placing">PLACING TILES</button>
+
+                        <button id="cities">CITIES</button>
+
+                        <button id="roads">ROADS</button>
+
+                        <button id="monistaries">MONISTARIES</button>
+
+                        <button id="farmers">FARMERS</button>
+
+                        <button id="end">END OF GAME</button>
+
+                    </div>
 
                 </div>
 
-                <div id="skip-to-controls">
-                    <h3>Skip to:</h3>
+            </div>
 
-                    <button id="intro">INTRO</button>
+            <!--  -->
+            <div id="bookCell" class="hidden">
 
-                    <button id="setup">SET UP</button>
+                <!-- create buttons to manually flip the pages of the rulebook -->
+                <div id="bookControls">
+                    <button id="flipPrev">PREVIOUS PAGE</button>
+                    <button id="flipNext">NEXT PAGE</button>
+                </div>
 
-                    <button id="placing">PLACING TILES</button>
+                <!-- create a div to hold the pages of the rulebook -->
+                <div id="book">
 
-                    <button id="cities">CITIES</button>
+                    <!-- create an image to hold the left page of the rulebook -->
+                    <img id="leftPage" src="images/rulebookPages/page2.jpg"  alt="the current left page of the instruction book">
 
-                    <button id="roads">ROADS</button>
+                    <!-- create a div to hold the type parts of the right page -->
+                    <div id="rightPage">
+                        <!-- the top page is a dummy image just used for flipping animations -->
+                        <img id="topPage" src="images/rulebookPages/page1.jpeg" alt="the page of the instruction book being flipped">
 
-                    <button id="monistaries">MONISTARIES</button>
-
-                    <button id="farmers">FARMERS</button>
-
-                    <button id="end">END OF GAME</button>
-
+                        <!-- the bottom page is the actual right page -->
+                        <img id="bottomPage" src="images/rulebookPages/page1.jpeg" alt="the current right page of the instruction book">
+                    </div>
                 </div>
 
             </div>
 
-        </div>
+            <!-- create a div to hold the book pages -->
+             <!-- this will only display when JavaScript is disabled -->
+            <div id="bookGrid">
+                <img src="images/rulebookPages/page1.jpeg"  alt="the first page of the instruction book">
 
-        <div id="bookCell">
+                <img src="images/rulebookPages/page2.jpg" alt="the second page of the instruction book">
 
-            <div id="book_controls">
-                <button id="flipPrev">PREVIOUS PAGE</button>
-                <button id="flipNext">NEXT PAGE</button>
+                <img src="images/rulebookPages/page3.jpeg" alt="the third page of the instruction book">
+
+                <img src="images/rulebookPages/page4.jpeg" alt="the fourth page of the instruction book">
+
+                <img src="images/rulebookPages/page5.jpeg" alt="the fifth page of the instruction book">
+
+                <img src="images/rulebookPages/page6.jpeg" alt="the sixth page of the instruction book">
+
+                <img src="images/rulebookPages/page7.jpeg" alt="the seventh page of the instruction book">
+
+                <img src="images/rulebookPages/page8.jpg" alt="the eigth and final page of the instruction book">
+
             </div>
 
-            <div id="book">
-                <img id="leftPage" src="images/rulebookPages/page2.jpeg">
 
-                <div id="rightPage">
-                    <img id="topPage" src="images/rulebookPages/page1.jpeg">
-                    <img id="bottomPage" src="images/rulebookPages/page1.jpeg">
-                </div>
-            </div>
+        </main>
 
-        </div>
-
-
-    </main>
-
-</body>
+    </body>
 
 </html>
