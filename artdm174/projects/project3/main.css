@@ -180,6 +180,7 @@ make them blue in color
 */
 h3
 {
+    color: rgb(8, 17, 68);
     border-bottom: inset 5px rgb(20, 39, 146);
     margin: max(2%, 10px) 10%;
     padding: 5px;
