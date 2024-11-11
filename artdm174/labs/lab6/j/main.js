@@ -10,19 +10,28 @@ fetch("houses.json")
     .then((response) => response.json())
     .then((data) => {
         //create a temp holder to append all the html generated inside the forEach iterator
-        let html = "";
+        let html = "<dl>";
+
 
         //the argument "house" passed to the arrow function
         //holds each item in the array in turn.
         data.forEach((house) => {
-            let family = house.members.join(" | ");
 
             // generate the html snippet for one array item
             //to be added to the "html" temp holder.
-            let objInfo = `<p class="house">${house.name}</p>
-        <p class="folks">${family}</p>`;
+            let objInfo = `<dt class="house" id="` + house.code + `">` + house.name + `</dt>`;
+
+            for(let i = 0; i < house.members.length; i++)
+            {
+
+                objInfo += `<dd class="folks">` + house.members[i] + `</dd>`;
+            }
+            
+
             html += objInfo;
         });
+
+        html += "</dl>"
 
         //make a reference to the html container where
         //the info will be displayed.
@@ -31,3 +40,4 @@ fetch("houses.json")
     })
     .catch((err) => console.log("Oops!", err));
     //this only runs if there is an error during the above process
+
