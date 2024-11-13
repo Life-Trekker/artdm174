@@ -1,3 +1,8 @@
+/*
+Author: Josh T
+File Name: main.js for Lab 6
+*/
+
 
 //This code does NOT create any global variables.
 //Promises can be chained together, with the previous promise
@@ -19,7 +24,7 @@ fetch("houses.json")
 
             // generate the html snippet for one array item
             //to be added to the "html" temp holder.
-            let objInfo = `<dt class="house" id="` + house.code + `">` + house.name + `</dt>`;
+            let objInfo = `<div id="` + house.code + `">  <dt class="house">` + house.name + `</dt>`;
 
             for(let i = 0; i < house.members.length; i++)
             {
@@ -29,6 +34,7 @@ fetch("houses.json")
             
 
             html += objInfo;
+            html += `<img src=images/` + house.name + `Logo.png> </div>`;
         });
 
         html += "</dl>"

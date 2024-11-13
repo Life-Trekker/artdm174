@@ -1,0 +1,56 @@
+/*
+Author: Josh T
+File Name: main.css for Lab 6
+*/
+
+/* CSS Reset */
+body, header, nav, main, footer, img, h1, h2, h3, ul, section, aside, figure, figcaption {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+body{
+    background-image: url(images/backgroundTexture.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    color: white;
+    font-size: 20pt;
+
+}
+
+#container div
+{
+    padding: 2%;
+    background-color: rgba(250, 235, 215, 0.2);
+    border-radius: 10px;
+
+    margin: 2% 42%;
+}
+
+.house
+{
+    font-size: 24pt;
+    font-weight: bold;
+}
+
+#ST dt
+{
+    color: rgb(170, 169, 169);
+}
+
+#LA dt
+{
+    color: rgb(139, 18, 24);
+}
+
+#BA dt
+{
+    color: rgb(212, 165, 7);
+}
+
+#TA dt
+{
+    color: black;
+}
