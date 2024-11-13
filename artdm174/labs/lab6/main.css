@@ -11,13 +11,16 @@ body, header, nav, main, footer, img, h1, h2, h3, ul, section, aside, figure, fi
 }
 
 body{
-    background-image: url(images/backgroundTexture.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
 
     color: white;
     font-size: 20pt;
 
+}
+
+#background
+{
+    width: 100%;
+    height: 100%;
 }
 
 #container div

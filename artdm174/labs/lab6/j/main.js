@@ -51,16 +51,55 @@ function init()
         .catch((err) => console.log("Oops!", err));
         //this only runs if there is an error during the above process
 
+        let url = 'https://www.thecolorapi.com/id?hex=';
+        let next = 0;
+
+        for(let i = 0; i < 6; i++)
+        {
+            next = Math.floor(Math.random() * 16);
+
+            if(next === 10)
+            {
+                next = 'A';
+            }
+            else if(next === 11)
+            {
+                next = 'B';
+            }
+            else if(next === 12)
+            {
+                next = 'C';
+            }
+            else if(next === 13)
+            {
+                    next = 'D';
+            }
+            else if(next === 14)
+            {
+                next = 'E';
+            }
+            else if(next === 15)
+            {
+                next = 'F';
+            }
+
+            url += "" + next;
+        }
 
 
-    fetch('https://www.colr.org/color/random')
+        fetch(url)
         .then(response => response.json())
-        .then(color => {
-            console.log(color);
+        .then(data => {
+
+            const background = document.querySelector("body");
+            background.style.backgroundColor = data.rgb.value;
+            background.style.color = data.contrast.value;
+
         })
         .catch(err => {
-            console.error(err.message);
+            console.log("Oops!", err);
         });
+
   
 
 
