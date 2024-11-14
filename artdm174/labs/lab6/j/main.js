@@ -8,22 +8,24 @@ document.addEventListener('DOMContentLoaded', init);
 
 
 
-function init()
+async function init()
 {
 
     //PART 1
 
     //fetch the information in the houses.json file
-    fetch("houses.json")
-        .then((response) => response.json())
-        .then((data) => {
+    let GOTData = await fetch("houses.json");
+    let response = await GOTData.json();
+    
+
+    try{
             //create a temp holder to append all the html generated inside the forEach iterator
             //add a h1 heading to this temp as well as an opening dl tag
             let html = "<h1>GAME OF THRONES<br>CHARACTERS</h1> <dl>";
 
 
             //the argument "house" passed to the arrow function holds each item in the array in turn.
-            data.forEach((house) => {
+            response.forEach((house) => {
 
                 // generate the html snippet for one array item to be added to the "html" temp holder.
 
@@ -57,8 +59,10 @@ function init()
 
             //set the inner html of that container to the temp html string, thus displaying it on the page
             container.innerHTML = html;
-        })
-        .catch((err) => console.log("Oops!", err));
+        }
+        catch{
+            err => console.log("Oops!", err);
+        }
         //this only runs if there is an error during the above process
 
 
