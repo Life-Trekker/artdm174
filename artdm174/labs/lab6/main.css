@@ -1,0 +1,77 @@
+/*
+Author: Josh T
+File Name: main.css for Lab 6
+*/
+
+/* CSS Reset */
+body, header, nav, main, footer, img, h1, h2, h3, ul, section, aside, figure, figcaption {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+/* give the body a background image and set the default font size to 20
+this background image is partially transparent, so it will let the randomly generated color shine through
+*/
+body{
+    background-image: url(images/backgroundTexture.png);
+    font-size: 20pt;
+
+}
+
+/* center all h1 headings and give them some slight margin */
+h1{
+    margin: 2%;
+    text-align: center;
+}
+
+/* give the div rounded corners and opace backgrounds
+center these divs within their grid cells
+*/
+#container div
+{
+
+    padding: 2%;
+    background-color: rgba(250, 235, 215, 0.2);
+    border-radius: 10px;
+
+    margin: 2% auto;
+}
+
+/* display the house info in a 4 column grid */
+dl
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+/* make each house's name bold and in 24 point font */
+.house
+{
+    font-size: 24pt;
+    font-weight: bold;
+}
+
+/* make the stark heading gray */
+#ST dt
+{
+    color: rgb(170, 169, 169);
+}
+
+/* make the lannister heading red */
+#LA dt
+{
+    color: rgb(128, 14, 19);
+}
+
+/* make the baratheon heading yellow */
+#BA dt
+{
+    color: rgb(212, 165, 7);
+}
+
+/* make the targaryen heading black */
+#TA dt
+{
+    color: black;
+}
