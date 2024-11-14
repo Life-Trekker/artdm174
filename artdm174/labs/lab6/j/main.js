@@ -112,24 +112,6 @@ function init()
             url += "" + next;
         }
 
-
-        fetch(url)
-        .then(response => response.json())
-        .then(data => {
-
-            const background = document.querySelector("body");
-            background.style.backgroundColor = data.rgb.value;
-            background.style.color = data.contrast.value;
-
-        })
-        .catch(err => {
-            console.log("Oops!", err);
-        });
-
-            //add this new digit the the url
-            url += "" + next;
-        }
-
         //fetch the color data from this url
         fetch(url)
             .then(response => response.json())
