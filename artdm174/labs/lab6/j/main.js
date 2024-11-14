@@ -15,9 +15,11 @@ async function init()
 
     //fetch the information in the houses.json file
     let GOTData = await fetch("houses.json");
+
+    //store that response as json
     let response = await GOTData.json();
     
-
+    //try to run the following code
     try{
             //create a temp holder to append all the html generated inside the forEach iterator
             //add a h1 heading to this temp as well as an opening dl tag
@@ -60,10 +62,10 @@ async function init()
             //set the inner html of that container to the temp html string, thus displaying it on the page
             container.innerHTML = html;
         }
+        //this only runs if there is an error during the above process
         catch{
             err => console.log("Oops!", err);
         }
-        //this only runs if there is an error during the above process
 
 
 
@@ -117,24 +119,30 @@ async function init()
         }
 
         //fetch the color data from this url
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
+        let color = await fetch(url)
 
-                //get a reference to the body of our html page
-                const background = document.querySelector("body");
+        //store that response as json
+        response = await color.json();
+
+        //try to run the following code
+        try 
+        {
+
+            //get a reference to the body of our html page
+            const background = document.querySelector("body");
                 
-                //set its background color to the rgb value returned by the data
-                background.style.backgroundColor = data.rgb.value;
+            //set its background color to the rgb value returned by the data
+            background.style.backgroundColor = response.rgb.value;
 
-                //set the default text color to the contrasting value returned by the data
-                background.style.color = data.contrast.value;
+            //set the default text color to the contrasting value returned by the data
+            background.style.color = response.contrast.value;
 
-            })
-            //create an error that only runs if there is a problem with the process above
-            .catch(err => {
-                console.log("There is an error getting the random background color", err);
-            });
+        }
+        //create an error that only runs if there is a problem with the process above
+        catch
+        {
+            err => console.log("There is an error getting the random background color", err);
+        }
             
   
 
