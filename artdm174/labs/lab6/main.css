@@ -36,6 +36,10 @@ center these divs within their grid cells
     border-radius: 10px;
 
     margin: 2% auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 /* display the house info in a 4 column grid */
