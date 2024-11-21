@@ -6,10 +6,12 @@ File Name: main.js for Lab 7
 //run this js code after the DOM has finished loading
 document.addEventListener('DOMContentLoaded', init);
 
+var shouldResetScoreboard = false;
+
 function init()
 {
     const button = document.querySelector("#startBtn");
-    button.addEventListener("click", newRound);
+    button.addEventListener("click", () => { newRound(shouldResetScoreboard) } );
 
     const container = document.querySelector("#container");
     let HTML = "<h3>Welcome to</h3> <h1>Ultimate Rock-Paper-Scissors</h1>";
@@ -139,11 +141,20 @@ async function getImages(objects)
 }
 
 
-async function newRound()
+async function newRound(reset)
 {
-
     const button = document.querySelector("#startBtn");
     button.style.display = "none";
+
+
+    if(reset)
+    {
+        updateScores(0);
+        shouldResetScoreboard = false;
+    }
+
+    const scoreboard = document.querySelector("#scoreboard");
+    scoreboard.style.display = "flex";
 
     const objects = await getOptions();
     console.log(objects);
@@ -182,7 +193,7 @@ async function determineWinner(computerChoice, userChoice)
 {
 
     const container = document.querySelector("#container");
-    let HTML = "<h3>Your opponent ";
+    let HTML = "<h3><i>Your opponent ";
 
 
 
@@ -196,27 +207,31 @@ async function determineWinner(computerChoice, userChoice)
     //try to run the following code
     try 
     {
+        let result = 0;
+
         if(response.winner === computerChoice)
         {
-            HTML += "chose " + computerChoice + "</h3>";
+            HTML += "chose " + computerChoice + "</i> </h3>";
             HTML += "<h3>" + response.winner + " " + response.outcome + " " + response.loser + "</h3>";
             HTML += "<h3>You Lost!</h3>";
+            result = -1;
         }
         else if(response.winner === userChoice)
         {
-            HTML += "chose " + computerChoice + "</h3>";
+            HTML += "chose " + computerChoice + "</i> </h3>";
             HTML += "<h3>" + response.winner + " " + response.outcome + " " + response.loser + "</h3>";
             HTML += "<h3>You Won!</h3>";
+            result = 1;
         }
         else if(computerChoice === userChoice)
         {
-            HTML += "also chose " + computerChoice + "</h3>"
+            HTML += "also chose " + computerChoice + "</i> </h3>"
             HTML += "<h3>It's a Tie!</h3>";
         }
         else
         {
-            HTML += "chose " + computerChoice + "</h3>"
-            HTML += computerChoice + " and " + userChoice + " are so different that they simply cannot be compared";
+            HTML += "chose " + computerChoice + "</i> </h3>"
+            HTML += computerChoice + " and " + userChoice + " are so different that they simply can't be compared";
             HTML += "<h3>It's a Tie!</h3>";
         }
 
@@ -226,6 +241,8 @@ async function determineWinner(computerChoice, userChoice)
         button.textContent = "Play Again?"
         button.style.display = "inline-block";
 
+        updateScores(result);
+
 
     }
     //create an error that only runs if there is a problem with the process above
@@ -234,5 +251,64 @@ async function determineWinner(computerChoice, userChoice)
         err => console.log("There is an error getting the object options for this round", err);
     }
     
+}
+
+function updateScores(newValue)
+{
+    const userScore = document.querySelector("#userScore");
+    const computerScore = document.querySelector("#computerScore");
+    let newContent = 0;
+
+
+    if(newValue < 0)
+    {
+        newContent = newValue * -1 + parseInt(computerScore.textContent);
+        computerScore.textContent = newContent;
+
+        console.log(newContent);
+
+        if(newContent >= 3)
+        {
+            gameComplete(-1);
+        }
+    }
+    else if(newValue > 0)
+    {
+        newContent = newValue + parseInt(userScore.textContent);
+        userScore.textContent = newContent;
+
+        console.log(newContent);
+
+        if(newContent >= 3)
+        {
+            gameComplete(1);
+        }
+    }
+    else
+    {
+        computerScore.textContent = "0";
+        userScore.textContent = "0";
+    }
+
+}
+
+
+function gameComplete(result)
+{
+
+    const container = document.querySelector("#container");
+
+    if(result > 0)
+    {
+        container.innerHTML += "<h1>And You've Won the Game!</h1>";
+    }
+    else if(result < 0)
+    {
+        container.innerHTML += "<h1>And You've Lost the Game!</h1>";
+    }
+
+    const button = document.querySelector("#startBtn");
+    button.textContent = "Wanna Start a New Game?";
+    shouldResetScoreboard = true;
 }
 

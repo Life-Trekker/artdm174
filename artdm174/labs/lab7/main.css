@@ -18,6 +18,7 @@ body{
     background-size: cover;
 
     color: white;
+    font-family: Helvetica, sans-serif;
     font-size: 20pt;
     text-align: center;
 
@@ -40,10 +41,17 @@ center these divs within their grid cells
 {
 
     padding: 2%;
-    background-color: rgba(250, 235, 215, 0.2);
+    background-color: rgba(243, 240, 235, 0.2);
     border-radius: 10px;
 
     margin: 2% auto;
+}
+
+#scoreboard
+{
+    margin: 5%;
+    display: none;
+    justify-content: space-evenly;
 }
 
 /* display the house info in a 4 column grid */
@@ -55,6 +63,13 @@ center these divs within their grid cells
 
 img{
     width: 200px;
+}
+
+button{
+    color: white;
+    padding: 1%;
+    background-color: rgba(243, 240, 235, 0.2);
+    border-radius: 10px;
 }
 
 
