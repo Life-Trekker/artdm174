@@ -14,7 +14,10 @@ body, header, nav, main, footer, img, h1, h2, h3, ul, section, aside, figure, fi
 this background image is partially transparent, so it will let the randomly generated color shine through
 */
 body{
-    background-image: url(images/backgroundTexture.png);
+    background-image: url(images/backgroundTexture.jpg);
+    background-size: cover;
+
+    color: white;
     font-size: 20pt;
     text-align: center;
 
@@ -26,10 +29,14 @@ h1{
     text-align: center;
 }
 
+h3{
+    margin: 2%;
+}
+
 /* give the div rounded corners and opace backgrounds
 center these divs within their grid cells
 */
-#container div
+#container .object
 {
 
     padding: 2%;
@@ -49,3 +56,5 @@ center these divs within their grid cells
 img{
     width: 200px;
 }
+
+

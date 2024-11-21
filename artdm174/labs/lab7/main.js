@@ -11,6 +11,12 @@ function init()
     const button = document.querySelector("#startBtn");
     button.addEventListener("click", newRound);
 
+    const container = document.querySelector("#container");
+    let HTML = "<h3>Welcome to</h3> <h1>Ultimate Rock-Paper-Scissors</h1>";
+    HTML += "<h3>Here's the Rules:</h3>";
+    HTML += "<p>Each round you'll be presented with a selection of 5 objects.<br>Choose one by clicking on it's image and your opponent will choose another.<br>Then, these objects will face off.<br>First player to win 3 rounds, wins the game.<br>Good Luck!</p>";
+    container.innerHTML = HTML;
+
 
 }
 
@@ -176,7 +182,7 @@ async function determineWinner(computerChoice, userChoice)
 {
 
     const container = document.querySelector("#container");
-    let HTML = "<h3>Your opponent chose " + computerChoice + "</h3>";
+    let HTML = "<h3>Your opponent ";
 
 
 
@@ -192,16 +198,25 @@ async function determineWinner(computerChoice, userChoice)
     {
         if(response.winner === computerChoice)
         {
+            HTML += "chose " + computerChoice + "</h3>";
             HTML += "<h3>" + response.winner + " " + response.outcome + " " + response.loser + "</h3>";
             HTML += "<h3>You Lost!</h3>";
         }
         else if(response.winner === userChoice)
         {
+            HTML += "chose " + computerChoice + "</h3>";
             HTML += "<h3>" + response.winner + " " + response.outcome + " " + response.loser + "</h3>";
             HTML += "<h3>You Won!</h3>";
         }
+        else if(computerChoice === userChoice)
+        {
+            HTML += "also chose " + computerChoice + "</h3>"
+            HTML += "<h3>It's a Tie!</h3>";
+        }
         else
         {
+            HTML += "chose " + computerChoice + "</h3>"
+            HTML += computerChoice + " and " + userChoice + " are so different that they simply cannot be compared";
             HTML += "<h3>It's a Tie!</h3>";
         }
 
