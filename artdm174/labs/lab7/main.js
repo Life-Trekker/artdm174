@@ -241,7 +241,10 @@ async function determineWinner(computerChoice, userChoice)
         button.textContent = "Play Again?"
         button.style.display = "inline-block";
 
-        updateScores(result);
+        if(result != 0)
+        {
+            updateScores(result);
+        }
 
 
     }

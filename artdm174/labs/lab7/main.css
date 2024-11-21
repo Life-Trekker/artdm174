@@ -28,6 +28,8 @@ body{
 h1{
     margin: 2%;
     text-align: center;
+    color: darkgrey;
+    text-shadow: 5px 5px 2px rgb(61, 60, 60);
 }
 
 h3{
@@ -54,6 +56,18 @@ center these divs within their grid cells
     justify-content: space-evenly;
 }
 
+#userScore
+{
+    color:rgb(0, 55, 128);
+    text-shadow: 1px 3px 2px rgb(4, 26, 56);
+}
+
+#computerScore
+{
+    color:rgb(128, 19, 0);
+    text-shadow: 1px 3px 2px rgb(39, 8, 3);
+}
+
 /* display the house info in a 4 column grid */
 #optionGrid
 {
@@ -61,15 +75,34 @@ center these divs within their grid cells
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 
-img{
+img
+{
     width: 200px;
+    border: 5px solid white;
 }
 
-button{
+button
+{
     color: white;
     padding: 1%;
     background-color: rgba(243, 240, 235, 0.2);
     border-radius: 10px;
 }
 
+
+footer
+{
+    background-color: rgba(243, 240, 235, 0.2);
+    position: fixed;
+     left: 0;
+    bottom: 0;
+    width: 100%;
+
+    font-size: 14pt;
+
+}
+
+a{
+    color: darkgrey;
+}
 
