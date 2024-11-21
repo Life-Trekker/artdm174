@@ -16,6 +16,7 @@ this background image is partially transparent, so it will let the randomly gene
 body{
     background-image: url(images/backgroundTexture.png);
     font-size: 20pt;
+    text-align: center;
 
 }
 
@@ -39,39 +40,12 @@ center these divs within their grid cells
 }
 
 /* display the house info in a 4 column grid */
-dl
+#optionGrid
 {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 
-/* make each house's name bold and in 24 point font */
-.house
-{
-    font-size: 24pt;
-    font-weight: bold;
-}
-
-/* make the stark heading gray */
-#ST dt
-{
-    color: rgb(170, 169, 169);
-}
-
-/* make the lannister heading red */
-#LA dt
-{
-    color: rgb(128, 14, 19);
-}
-
-/* make the baratheon heading yellow */
-#BA dt
-{
-    color: rgb(212, 165, 7);
-}
-
-/* make the targaryen heading black */
-#TA dt
-{
-    color: black;
+img{
+    width: 200px;
 }
