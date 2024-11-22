@@ -54,88 +54,12 @@ async function getOptions()
 
 async function getImages(objects)
 {
-    let result = [];
-    let k;
-    let image;
-    let response;
-
-    k = await fetch("code.json");
-    response = await k.json();
-
-    try
-    {
-        k = response.code;
-
-    }
-    catch
-    {
-        err => console.log("There is an error getting info from external json", err);
-    }
-
-    for(let i = 0; i < 5; i++)
-    {
-
-        if(objects[i] === "Platimum")
-        {
-            //fetch the color data from this url
-            image = await fetch("https://pixabay.com/api/?key=" + k + "&q=Silver+Metal&image_type=photo"); 
-        }
-        else if(objects[i] === "Pit")
-        {
-            image = await fetch("https://pixabay.com/api/?key=" + k + "&q=Chasm&image_type=photo");
-        }
-        else if(objects[i] === "Quicksand")
-        {
-            image = await fetch("https://pixabay.com/api/?key=" + k + "&q=Desert&image_type=photo");
-        }
-        else if(objects[i] === "Whip")
-        {
-            image = await fetch("https://pixabay.com/api/?key=" + k + "&q=Whip+Animal&image_type=photo");
-        }
-        else if(objects[i] === "Death")
-        {
-            image = await fetch("https://pixabay.com/api/?key=" + k + "&q=Skull&image_type=photo");
-        }
-        else if(objects[i] === "Community")
-        {
-            image = await fetch("https://pixabay.com/api/?key=" + k + "&q=City&image_type=photo");
-        }
-        else if(objects[i] === "T.V.")
-        {
-            image = await fetch("https://pixabay.com/api/?key=" + k + "&q=Tv&image_type=photo");
-        }
-        else
-        {
-
-            //fetch the color data from this url
-            image = await fetch("https://pixabay.com/api/?key=" + k + "&q=" + objects[i] + "&image_type=photo");
-        }
-
-
-
-        //store that response as json
-        response = await image.json();
-
-        //try to run the following code
-        try 
-        {
-            if(response.totalHits < 20)
-            {
-                result[i] = response.hits[ Math.floor(Math.random() * response.totalHits) ].webformatURL;
-            }
-            else
-            {
-                result[i] = response.hits[ Math.floor(Math.random() * 20) ].webformatURL;
-            }
-
-        }
-        //create an error that only runs if there is a problem with the process above
-        catch
-        {
-            err => console.log("There is an error getting an image for " + objects[i], err);
-        }
-
-    }
+    let result = ["https://pixabay.com/get/g0b30706b5dfd56fbe3d525bbc2a4158aebe60747289d9887b5fc4073af901c29a3cca56d57ea83cc71786de85e9a37b6ab3ae3994bd323a865340a05a121ae3e_640.jpg",
+            "https://pixabay.com/get/g7f46843a2ad1aaf937bf2562be1e3715ac8e50f38a884109cbe6e3d7dedd58581a3a04839bf4627ac129d23a18401d28146f3d93442bf92713e5774e32add816_640.jpg",
+            "https://pixabay.com/get/g96b01dbac6f07dae9abcc89af4d03100b60c80026c1a345894a648a728184c6270934286f5c1ca2ba27519e7dc9da4069d8b8187c36f66bdbfec8319dae9991c_640.jpg",
+            "https://pixabay.com/get/g37322219a07dd31ef0b0a497357e4e029cefd751c282a1e58bb95f75fb725ad3297bede6d603d1590527cb3b5ddbf96cfb59842061b66e12e9bc82589c2d35b8_640.jpg",
+            "https://pixabay.com/get/g78c7304279d818000f8e7e4c6e69f5670d79c85389814dfdc92152637360f2a67bf95824aefafd58b586069daafc00b5_640.jpg"];
+    
 
     return result;
 }
@@ -156,7 +80,7 @@ async function newRound(reset)
     const scoreboard = document.querySelector("#scoreboard");
     scoreboard.style.display = "flex";
 
-    const objects = await getOptions();
+    const objects = ["Book", "Grass", "Bird", "School", "Sword"];
     console.log(objects);
 
     const images = await getImages(objects);
