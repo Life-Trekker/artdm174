@@ -108,7 +108,7 @@ async function getImages(objects)
         {
 
             //fetch the color data from this url
-            image = await fetch("https://pixabay.com/api/?key=" + k + "&q=" + objects[i] + "&image_type=photo");
+            image = await fetch("https://7735c245-7bd1-4d91-ae2a-d1881065df44-00-397f2j7r46ukg.riker.replit.dev/imageSearch/" + objects[i]);
         }
 
 
@@ -119,6 +119,8 @@ async function getImages(objects)
         //try to run the following code
         try 
         {
+            console.log(response);
+            
             if(response.totalHits < 20)
             {
                 result[i] = response.hits[ Math.floor(Math.random() * response.totalHits) ].webformatURL;
