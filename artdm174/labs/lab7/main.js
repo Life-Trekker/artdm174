@@ -23,6 +23,53 @@ function init()
 }
 
 
+async function newRound(reset)
+{
+    const button = document.querySelector("#startBtn");
+    button.style.display = "none";
+
+
+    if(reset)
+    {
+        updateScores(0);
+        shouldResetScoreboard = false;
+    }
+
+    const scoreboard = document.querySelector("#scoreboard");
+    scoreboard.style.display = "flex";
+
+    const objects = await getOptions();
+
+    const images = await getImages(objects);
+
+    let HTML = "<h3>The Objects For This Round Are:</h3>";
+    HTML += "<div id=optionGrid>";
+
+    for(let i = 0; i < 5; i++)
+    {
+        HTML += "<div class=object>";
+        HTML += "<p>" + objects[i] + "</p>";
+        HTML += "<img id=option" + i + " src=" + images[i] + ">";
+        HTML += "</div>";
+
+    }
+
+    HTML += "</div>"
+
+    
+
+    const container = document.querySelector("#container");
+    container.innerHTML = HTML;
+
+    const computerChoice = objects[Math.floor(Math.random() * 5)];
+
+    for(let i = 0; i < 5; i++)
+    {
+        document.querySelector("#option" + i).addEventListener("click", () => { determineWinner(computerChoice, objects[i]) });
+    }
+            
+}
+
 async function getOptions()
 {
     //fetch the color data from this url
@@ -99,14 +146,12 @@ async function getImages(objects)
         }
 
 
-
         //store that response as json
         response = await image.json();
 
         //try to run the following code
         try 
         {
-            console.log(response);
             
             if(response.totalHits < 20)
             {
@@ -127,55 +172,6 @@ async function getImages(objects)
     }
 
     return result;
-}
-
-
-async function newRound(reset)
-{
-    const button = document.querySelector("#startBtn");
-    button.style.display = "none";
-
-
-    if(reset)
-    {
-        updateScores(0);
-        shouldResetScoreboard = false;
-    }
-
-    const scoreboard = document.querySelector("#scoreboard");
-    scoreboard.style.display = "flex";
-
-    const objects = ["Book", "Grass", "Bird", "School", "Sword"];
-    console.log(objects);
-
-    const images = await getImages(objects);
-
-    let HTML = "<h3>The Objects For This Round Are:</h3>";
-    HTML += "<div id=optionGrid>";
-
-    for(let i = 0; i < 5; i++)
-    {
-        HTML += "<div class=object>";
-        HTML += "<p>" + objects[i] + "</p>";
-        HTML += "<img id=option" + i + " src=" + images[i] + ">";
-        HTML += "</div>";
-
-    }
-
-    HTML += "</div>"
-
-    
-
-    const container = document.querySelector("#container");
-    container.innerHTML = HTML;
-
-    const computerChoice = objects[Math.floor(Math.random() * 5)];
-
-    for(let i = 0; i < 5; i++)
-    {
-        document.querySelector("#option" + i).addEventListener("click", () => { determineWinner(computerChoice, objects[i]) });
-    }
-            
 }
 
 async function determineWinner(computerChoice, userChoice)
