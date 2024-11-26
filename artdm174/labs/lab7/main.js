@@ -55,22 +55,9 @@ async function getOptions()
 async function getImages(objects)
 {
     let result = [];
-    let k;
     let image;
     let response;
 
-    k = await fetch("code.json");
-    response = await k.json();
-
-    try
-    {
-        k = response.code;
-
-    }
-    catch
-    {
-        err => console.log("There is an error getting info from external json", err);
-    }
 
     for(let i = 0; i < 5; i++)
     {
