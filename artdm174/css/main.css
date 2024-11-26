@@ -118,14 +118,27 @@ h2{
     padding: 5px;
 }
 
+.projects ul{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.labs ul{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+
 /*
 place the projects and labs content in partially transparent gray boxes with rounded corners
 */
-.projects, .labs{
-    margin: 4%;
+li{
+    margin: 4% 1%;
     padding: 2em;
     background-color: rgba(163, 163, 163, 20%);
     border-radius: 10px;
+    border-bottom: rgb(182, 127, 19) 5px solid;
 }
 
 /*

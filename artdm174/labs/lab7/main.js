@@ -78,37 +78,37 @@ async function getImages(objects)
         if(objects[i] === "Platimum")
         {
             //fetch the color data from this url
-            image = await fetch("https://pixabay.com/api/?key=" + k + "&q=Silver+Metal&image_type=photo"); 
+            image = await fetch("https://1c9374c4-dadb-496d-9704-63e851db8798-00-130hiq61lnsv3.worf.replit.dev/imageSearch/Silver+Metal"); 
         }
         else if(objects[i] === "Pit")
         {
-            image = await fetch("https://pixabay.com/api/?key=" + k + "&q=Chasm&image_type=photo");
+            image = await fetch("https://1c9374c4-dadb-496d-9704-63e851db8798-00-130hiq61lnsv3.worf.replit.dev/imageSearch/Chasm");
         }
         else if(objects[i] === "Quicksand")
         {
-            image = await fetch("https://pixabay.com/api/?key=" + k + "&q=Desert&image_type=photo");
+            image = await fetch("https://1c9374c4-dadb-496d-9704-63e851db8798-00-130hiq61lnsv3.worf.replit.dev/imageSearch/Desert");
         }
         else if(objects[i] === "Whip")
         {
-            image = await fetch("https://pixabay.com/api/?key=" + k + "&q=Whip+Animal&image_type=photo");
+            image = await fetch("https://1c9374c4-dadb-496d-9704-63e851db8798-00-130hiq61lnsv3.worf.replit.dev/imageSearch/Whip+Animal");
         }
         else if(objects[i] === "Death")
         {
-            image = await fetch("https://pixabay.com/api/?key=" + k + "&q=Skull&image_type=photo");
+            image = await fetch("https://1c9374c4-dadb-496d-9704-63e851db8798-00-130hiq61lnsv3.worf.replit.dev/imageSearch/Skull");
         }
         else if(objects[i] === "Community")
         {
-            image = await fetch("https://pixabay.com/api/?key=" + k + "&q=City&image_type=photo");
+            image = await fetch("https://1c9374c4-dadb-496d-9704-63e851db8798-00-130hiq61lnsv3.worf.replit.dev/imageSearch/City");
         }
         else if(objects[i] === "T.V.")
         {
-            image = await fetch("https://pixabay.com/api/?key=" + k + "&q=Tv&image_type=photo");
+            image = await fetch("https://1c9374c4-dadb-496d-9704-63e851db8798-00-130hiq61lnsv3.worf.replit.dev/imageSearch/Tv");
         }
         else
         {
 
             //fetch the color data from this url
-            image = await fetch("https://7735c245-7bd1-4d91-ae2a-d1881065df44-00-397f2j7r46ukg.riker.replit.dev/imageSearch/" + objects[i]);
+            image = await fetch("https://1c9374c4-dadb-496d-9704-63e851db8798-00-130hiq61lnsv3.worf.replit.dev/imageSearch/" + objects[i]);
         }
 
 
