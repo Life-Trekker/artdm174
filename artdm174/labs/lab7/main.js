@@ -11,6 +11,7 @@ var shouldResetScoreboard = false;
 function init()
 {
     const button = document.querySelector("#startBtn");
+    button.style.display = "inline-block";
     button.addEventListener("click", () => { newRound(shouldResetScoreboard) } );
 
     const container = document.querySelector("#container");

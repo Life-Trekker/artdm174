@@ -60,12 +60,26 @@ center these divs within their grid cells
 {
     color:rgb(0, 55, 128);
     text-shadow: 1px 3px 2px rgb(4, 26, 56);
+    
+    background-color: rgba(194, 217, 247, 0.2);
+    border-radius: 10px;
+
+    width: 50px;
+
+    margin: 1% auto;
 }
 
 #computerScore
 {
     color:rgb(128, 19, 0);
     text-shadow: 1px 3px 2px rgb(39, 8, 3);
+
+    background-color: rgba(245, 180, 168, 0.2);
+    border-radius: 10px;
+
+    width: 50px;
+
+    margin: 1% auto;
 }
 
 /* display the house info in a 4 column grid */
@@ -84,9 +98,12 @@ img
 button
 {
     color: white;
+    font-size: 14pt;
     padding: 1%;
     background-color: rgba(243, 240, 235, 0.2);
     border-radius: 10px;
+
+    display: none;
 }
 
 
