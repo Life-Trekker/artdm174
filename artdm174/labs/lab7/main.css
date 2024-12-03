@@ -1,6 +1,6 @@
 /*
 Author: Josh T
-File Name: main.css for Lab 6
+File Name: main.css for Lab 7
 */
 
 /* CSS Reset */
@@ -10,8 +10,7 @@ body, header, nav, main, footer, img, h1, h2, h3, ul, section, aside, figure, fi
     border: 0;
 }
 
-/* give the body a background image and set the default font size to 20
-this background image is partially transparent, so it will let the randomly generated color shine through
+/* give the body a background image that covers the whole page and set the default font to centered, white, 20pt Helvetica
 */
 body{
     background-image: url(images/backgroundTexture.jpg);
@@ -24,20 +23,21 @@ body{
 
 }
 
-/* center all h1 headings and give them some slight margin */
+/* place margin around all h1 heading, make them darkgray and given them a slight shadow 
+*/
 h1{
     margin: 2%;
-    text-align: center;
     color: darkgrey;
     text-shadow: 5px 5px 2px rgb(61, 60, 60);
 }
 
+/* give h3 headings some margin as well */
 h3{
     margin: 2%;
 }
 
-/* give the div rounded corners and opace backgrounds
-center these divs within their grid cells
+/* give the divs that hold each object option padding and a semi-transparent boxes with rounded corners
+center these divs in their grid cells
 */
 #container .object
 {
@@ -49,6 +49,10 @@ center these divs within their grid cells
     margin: 2% auto;
 }
 
+/* give the scoreboard lots of margin
+hide it by default, but later it will display as a flexbox
+space the contents within the flexbox evenly
+*/
 #scoreboard
 {
     margin: 5%;
@@ -56,6 +60,11 @@ center these divs within their grid cells
     justify-content: space-evenly;
 }
 
+
+/* make the player's score blue with a dark blue shadow
+place a 50px, semi-transparent box around it
+center it in its cell
+*/
 #userScore
 {
     color:rgb(0, 55, 128);
@@ -69,6 +78,10 @@ center these divs within their grid cells
     margin: 1% auto;
 }
 
+/* make the computer's score red with a dark red shadow
+place a 50px, semi-transparent box around it
+center it in its cell
+*/
 #computerScore
 {
     color:rgb(128, 19, 0);
@@ -82,19 +95,24 @@ center these divs within their grid cells
     margin: 1% auto;
 }
 
-/* display the house info in a 4 column grid */
+/* display the objects in a */
 #optionGrid
 {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 
+/* make all images 200px wide with white borders */
 img
 {
     width: 200px;
     border: 5px solid white;
 }
 
+/* make the text in the button white and 14pt in size
+round the corners of the button and give it a semi-transparent background
+hide the button when js is not enabled
+*/
 button
 {
     color: white;
@@ -106,7 +124,10 @@ button
     display: none;
 }
 
-
+/* give the footer a semi-transparent background
+make it stick to the bottom of the page
+make the footer text be 14pt font
+*/
 footer
 {
     background-color: rgba(243, 240, 235, 0.2);
@@ -119,6 +140,7 @@ footer
 
 }
 
+/* make all links dark gray */
 a{
     color: darkgrey;
 }
