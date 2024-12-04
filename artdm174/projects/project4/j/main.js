@@ -13,6 +13,8 @@ function getValue() {
     // Get the value of the input field
     let value = inputField.value;
 
+    value = value.toLowerCase();
+
     // Display the value in an alert
     console.log("Input value: " + value);
 
@@ -24,18 +26,16 @@ function init()
 {
 
     const searchBtn = document.getElementById("searchButton");
-    searchBtn.addEventListener("click",  search);
+    searchBtn.addEventListener("click",  async () => { displayInfo( await search(getValue()) ) } );
 
 }
 
-async function search()
+async function search(userInput)
 {
     const container = document.getElementById("searchResults");
-
-    const userInput = getValue();
-    let foundPerson = null;
-
     container.innerHTML = "<h1>SEARCHING...</h1>";
+
+    let foundPerson = null;
 
     for(let i = 1; i < 10; i++)
     {
@@ -54,18 +54,68 @@ async function search()
 
     console.log(foundPerson);
 
-    let html = "<h1>" + await foundPerson.name + "</h1>";
-    html += "<h2> <b>Birth Year:</b> " + await foundPerson.birth_year + "</h2>";
-    html += "<h2> <b>Gender:</b> " + await foundPerson.gender + "</h2>";
-    html += "<h2> <b>Height:</b> " + await foundPerson.height + "</h2>";
-    html += "<h2> <b>Hair Color:</b> " + await foundPerson.hair_color + "</h2>";
-    html += "<h2> <b>Eye Color:</b> " + await foundPerson.eye_color + "</h2>";
-    html += "<h2> <b>Skin Color:</b> " + await foundPerson.skin_color + "</h2>";
-    html += "<h2> <b>Homeworld:</b> " + await getHomeworld(foundPerson.homeworld) + "</h2>";
-    html += "<h2> <b>Has Appeared In:</b> </h2>" + await getListOfFilms(foundPerson.films);
+    if(foundPerson === null && userInput.includes(" ") === true)
+    {
+        const wordsWithinInput = userInput.split(" ");
+        let newResults;
+
+        for(let i = 0; i < wordsWithinInput.length; i++)
+        {
+            newResults = await search(wordsWithinInput[i]);
+
+            console.log("newResults = " + newResults);
+
+            if(newResults != null)
+            {
+                return newResults;
+            }
+        }
+
+        return null;
+
+    }
+    else
+    {
+        return foundPerson;
+    }
 
 
-    container.innerHTML = html;
+}
+
+async function displayInfo(foundPerson)
+{
+
+    const container = document.getElementById("searchResults");
+
+    if(foundPerson === null)
+    {
+        container.innerHTML = "<h1>We weren't able to find what you wanted.</h1>";
+    }
+    else
+    {
+        container.innerHTML = "<h1>LOADING...</h1>";
+
+        let html = "";
+
+        if(foundPerson.name.charAt(foundPerson.name.length - 1) === '~')
+        {
+            html += "<h1>We couldn't find exactly what you wanted.  Did you mean:</h1>";
+            foundPerson.name = foundPerson.name.slice(0, foundPerson.name.length - 1);
+        }
+
+        html += "<h1>" + foundPerson.name + "</h1>";
+        html += "<h2> <b>Birth Year:</b> " + foundPerson.birth_year + "</h2>";
+        html += "<h2> <b>Gender:</b> " + foundPerson.gender + "</h2>";
+        html += "<h2> <b>Height:</b> " + foundPerson.height + "</h2>";
+        html += "<h2> <b>Hair Color:</b> " + foundPerson.hair_color + "</h2>";
+        html += "<h2> <b>Eye Color:</b> " + foundPerson.eye_color + "</h2>";
+        html += "<h2> <b>Skin Color:</b> " + foundPerson.skin_color + "</h2>";
+        html += "<h2> <b>Homeworld:</b> " + await getHomeworld(foundPerson.homeworld) + "</h2>";
+        html += "<h2> <b>Has Appeared In:</b> </h2>" + await getListOfFilms(foundPerson.films);
+
+
+        container.innerHTML = html;
+    }
 
 
 
@@ -86,14 +136,33 @@ async function searchPage(pageNumber, value)
     {
 
         let person = 0;
+        let formattedName = "";
 
        for(let i = 0; i < await response.results.length; i++)
         {
             person = await response.results[i];
 
-            if(person.name === value)
+            formattedName = person.name.toLowerCase()
+
+            if(formattedName === value)
             {
                 return person;
+            }
+            else if (formattedName.includes(value))
+            {
+                person.name += "~";
+
+                return person;
+            }
+            else if(formattedName.includes("-"))
+            {
+                formattedName = formattedName.replaceAll("-", "");
+
+                if(formattedName === value)
+                {
+                    return person;
+                }
+
             }
         
         
