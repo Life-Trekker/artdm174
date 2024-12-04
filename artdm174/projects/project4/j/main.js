@@ -93,8 +93,15 @@ async function displayInfo(foundPerson)
     }
     else
     {
+        let html = "";
 
-        let html = "<h1>" + foundPerson.name + "</h1>";
+        if(foundPerson.name.charAt(foundPerson.name.length - 1) === '~')
+        {
+            html += "<h1>We couldn't find exactly what you wanted.  Did you mean:</h1>";
+            foundPerson.name = foundPerson.name.slice(0, foundPerson.name.length - 1);
+        }
+
+        html += "<h1>" + foundPerson.name + "</h1>";
         html += "<h2> <b>Birth Year:</b> " + foundPerson.birth_year + "</h2>";
         html += "<h2> <b>Gender:</b> " + foundPerson.gender + "</h2>";
         html += "<h2> <b>Height:</b> " + foundPerson.height + "</h2>";
@@ -136,7 +143,12 @@ async function searchPage(pageNumber, value)
             {
                 return person;
             }
-            
+            else if (person.name.toLowerCase().includes(value))
+            {
+                person.name += "~";
+
+                return person;
+            }
         
         
         };
