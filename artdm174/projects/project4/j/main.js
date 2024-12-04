@@ -35,7 +35,7 @@ async function search()
     const userInput = getValue();
     let foundPerson = null;
 
-
+    container.innerHTML = "<h1>SEARCHING...</h1>";
 
     for(let i = 1; i < 10; i++)
     {
@@ -61,6 +61,7 @@ async function search()
     html += "<h2> <b>Hair Color:</b> " + await foundPerson.hair_color + "</h2>";
     html += "<h2> <b>Eye Color:</b> " + await foundPerson.eye_color + "</h2>";
     html += "<h2> <b>Skin Color:</b> " + await foundPerson.skin_color + "</h2>";
+    html += "<h2> <b>Homeworld:</b> " + await getHomeworld(foundPerson.homeworld) + "</h2>";
     html += "<h2> <b>Has Appeared In:</b> </h2>" + await getListOfFilms(foundPerson.films);
 
 
@@ -141,3 +142,73 @@ async function getListOfFilms(filmLinks)
 
     return result + "</ul>";
 }
+
+async function getHomeworld(planetLink)
+{
+
+        const planetData = await fetch(planetLink);
+        const response = await planetData.json();
+
+        try
+        {
+    
+            let result = response.name;
+
+            if(response.climate != "unknown")
+            {
+                if(response.climate.charAt(0) === 'a' || response.climate.charAt(0) === 'e' || response.climate.charAt(0) === 'i' 
+                || response.climate.charAt(0) === 'o' || response.climate.charAt(0) === 'u')
+                {
+                    result += " - an ";
+                }
+                else
+                {
+                    result += " - a ";
+                }
+
+                result += " " + response.climate;
+            
+                if(response.terrain != "unknown")
+                {
+                     result += ", " + response.terrain;
+                }
+
+                return result + " world";
+            }
+            else if (response.terrain != "unknown")
+            {
+                if(response.terrain.charAt(0) === 'a' || response.terrain.charAt(0) === 'e' || response.terrain.charAt(0) === 'i' 
+                || response.terrain.charAt(0) === 'o' || response.terrain.charAt(0) === 'u')
+                {
+                    result += " - an ";
+                }
+                else
+                {
+                    result += " - a ";
+                }
+
+                result += response.terrain;
+
+                return result + " world";
+            }
+            else
+            {
+                return result;
+            }
+            
+
+
+    
+            
+    
+        }
+        //this only runs if there is an error during the above process
+        catch
+        {
+            err => console.log("Oops!", err);
+        }
+    
+
+
+}
+
