@@ -60,7 +60,9 @@ async function search()
     html += "<h2> <b>Height:</b> " + await foundPerson.height + "</h2>";
     html += "<h2> <b>Hair Color:</b> " + await foundPerson.hair_color + "</h2>";
     html += "<h2> <b>Eye Color:</b> " + await foundPerson.eye_color + "</h2>";
-    html += "<h2> <b>Eye Color:</b> " + await foundPerson.eye_color + "</h2>";
+    html += "<h2> <b>Skin Color:</b> " + await foundPerson.skin_color + "</h2>";
+    html += "<h2> <b>Has Appeared In:</b> </h2>" + await getListOfFilms(foundPerson.films);
+
 
     container.innerHTML = html;
 
@@ -105,4 +107,37 @@ async function searchPage(pageNumber, value)
         err => console.log("Oops!", err);
     }
 
+}
+
+async function getListOfFilms(filmLinks)
+{
+
+    let filmData;
+    let response;
+    let result = "<ul>";
+
+    for(let i = 0; i < filmLinks.length; i++)
+    {
+        filmData = await fetch(filmLinks[i]);
+        response = await filmData.json();
+
+        try
+        {
+    
+            result += "<li>Episode " + response.episode_id + " - " + response.title + "</li>";
+    
+            
+    
+        }
+        //this only runs if there is an error during the above process
+        catch
+        {
+            err => console.log("Oops!", err);
+        }
+    
+
+
+    }
+
+    return result + "</ul>";
 }
