@@ -14,8 +14,11 @@ body, header, nav, main, footer, img, h1, h2, h3, ul, section, aside, figure, fi
 this background image is partially transparent, so it will let the randomly generated color shine through
 */
 body{
-    background-image: url(images/backgroundTexture.png);
+    background-image: url(images/starBackground.jpeg);
     font-size: 20pt;
+    color: white;
+
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', Verdana, sans-serif;
 
 }
 
@@ -23,55 +26,74 @@ body{
 h1{
     margin: 2%;
     text-align: center;
+    color: rgb(255, 196, 0);
 }
 
-/* give the div rounded corners and opace backgrounds
-center these divs within their grid cells
-*/
-#container div
+h2{
+    text-align: center;
+}
+
+
+h3{
+    font-size: 20pt;
+    margin: 2%
+}
+
+#searchBox
 {
+    width: 50%;
+    margin: auto;
 
-    padding: 2%;
-    background-color: rgba(250, 235, 215, 0.2);
-    border-radius: 10px;
+}
 
+input{
+    width: 90%;
+    height: 40px;
+    border: none;
+}
+
+button{
+    width: 10%;
+    height: 40px;
+    border: none;
+    border-radius: 0;
+}
+
+button img{
+    width: 100%;
+    height: 100%;
+}
+
+#searchResults{
     margin: 2% auto;
 }
 
-/* display the house info in a 4 column grid */
-dl
-{
+#searchContent{
+    background-color: rgba(255, 255, 255, 0.2);
+    width: 50%;
+    margin: 2% auto;
+    padding: 5%;
+    border-radius: 20px;
+
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: repeat(5, 100%);
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
 }
 
-/* make each house's name bold and in 24 point font */
-.house
+#searchContent h2
 {
-    font-size: 24pt;
-    font-weight: bold;
+	grid-column-start: 1;
+	grid-column-end: 4;
+    
+    border-bottom: white 5px solid;
+    margin: 5px 0px;
 }
 
-/* make the stark heading gray */
-#ST dt
-{
-    color: rgb(170, 169, 169);
+b{
+    font-style: italic;
 }
 
-/* make the lannister heading red */
-#LA dt
-{
-    color: rgb(128, 14, 19);
-}
-
-/* make the baratheon heading yellow */
-#BA dt
-{
-    color: rgb(212, 165, 7);
-}
-
-/* make the targaryen heading black */
-#TA dt
-{
-    color: black;
+li{
+    font-size: 18pt;
 }
