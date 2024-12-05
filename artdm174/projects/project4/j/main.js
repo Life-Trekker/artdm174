@@ -33,7 +33,7 @@ function init()
 async function search(userInput)
 {
     const container = document.getElementById("searchResults");
-    container.innerHTML = "<h1>SEARCHING...</h1>";
+    container.innerHTML = "<h2>SEARCHING...</h2>";
 
     let foundPerson = null;
 
@@ -89,32 +89,32 @@ async function displayInfo(foundPerson)
 
     if(foundPerson === null)
     {
-        container.innerHTML = "<h1>We weren't able to find what you wanted.</h1>";
+        container.innerHTML = "<h2>We weren't able to find what you wanted.</h2>";
     }
     else
     {
-        container.innerHTML = "<h1>LOADING...</h1>";
+        container.innerHTML = "<h2>LOADING...</h2>";
 
         let html = "";
 
         if(foundPerson.name.charAt(foundPerson.name.length - 1) === '~')
         {
-            html += "<h1>We couldn't find exactly what you wanted.  Did you mean:</h1>";
+            html += "<h2>We couldn't find exactly what you wanted.  Did you mean:</h2>";
             foundPerson.name = foundPerson.name.slice(0, foundPerson.name.length - 1);
         }
 
-        html += "<h1>" + foundPerson.name + "</h1>";
-        html += "<h2> <b>Birth Year:</b> " + foundPerson.birth_year + "</h2>";
-        html += "<h2> <b>Gender:</b> " + foundPerson.gender + "</h2>";
-        html += "<h2> <b>Height:</b> " + foundPerson.height + "</h2>";
-        html += "<h2> <b>Hair Color:</b> " + foundPerson.hair_color + "</h2>";
-        html += "<h2> <b>Eye Color:</b> " + foundPerson.eye_color + "</h2>";
-        html += "<h2> <b>Skin Color:</b> " + foundPerson.skin_color + "</h2>";
-        html += "<h2> <b>Homeworld:</b> " + await getHomeworld(foundPerson.homeworld) + "</h2>";
-        html += "<h2> <b>Has Appeared In:</b> </h2>" + await getListOfFilms(foundPerson.films);
+        html += "<div id=searchContent>" + "<h2>" + foundPerson.name + "</h2>";
+        html += "<h3> <b>Birth Year:</b> " + foundPerson.birth_year + "</h3>";
+        html += "<h3> <b>Gender:</b> " + foundPerson.gender + "</h3>";
+        html += "<h3> <b>Height:</b> " + foundPerson.height + "</h3>";
+        html += "<h3> <b>Hair Color:</b> " + foundPerson.hair_color + "</h3>";
+        html += "<h3> <b>Eye Color:</b> " + foundPerson.eye_color + "</h3>";
+        html += "<h3> <b>Skin Color:</b> " + foundPerson.skin_color + "</h3>";
+        html += "<h3 id=planetInfo> <b>Homeworld:</b> " + await getHomeworld(foundPerson.homeworld) + "</h3>";
+        html += "<div id=filmInfo> <h3> <b>Has Appeared In:</b> </h3>" + await getListOfFilms(foundPerson.films) + "</div>";
 
 
-        container.innerHTML = html;
+        container.innerHTML = html + "</div>";
     }
 
 

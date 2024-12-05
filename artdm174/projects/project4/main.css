@@ -44,24 +44,29 @@ h3{
     width: 50%;
     margin: auto;
 
+    display: grid;
+    grid-template-columns: 5% 95%;
+
+    align-items: center;
+
 }
 
 input{
-    width: 90%;
-    height: 40px;
-    border: none;
+    margin: 0 1%;
+    height: 100%;
 }
 
-button{
-    width: 10%;
-    height: 40px;
-    border: none;
-    border-radius: 0;
+input:focus {
+    outline: 3px rgb(255, 196, 0) solid;
 }
 
-button img{
+
+#searchBox img{
     width: 100%;
     height: 100%;
+
+    border-radius: 50%;
+
 }
 
 #searchResults{
@@ -89,6 +94,21 @@ button img{
     border-bottom: white 5px solid;
     margin: 5px 0px;
 }
+
+#planetInfo, #filmInfo{
+    grid-column-start: 1;
+	grid-column-end: 4;
+
+}
+
+#planetInfo{
+    margin: 2% 0;
+}
+
+#filmInfo h3{
+    margin: 2% 0;
+}
+
 
 b{
     font-style: italic;
