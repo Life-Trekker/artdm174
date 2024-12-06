@@ -38,22 +38,8 @@ async function search(userInput)
     const container = document.getElementById("searchResults");
     container.innerHTML = "<h2>SEARCHING...</h2>";
 
-    let foundPerson = null;
+    let foundPerson = await getPersonByName(userInput);
 
-    for(let i = 1; i < 10; i++)
-    {
-        foundPerson = await searchPage(i, userInput);
-
-        if(foundPerson != null)
-        {
-            console.log("We break");
-            break;
-        }
-        else
-        {
-            console.log(userInput + " not found in page " + i);
-        }
-    }
 
     console.log(foundPerson);
 
@@ -90,7 +76,7 @@ async function displayInfo(foundPerson)
 
     const container = document.getElementById("searchResults");
 
-    if(foundPerson === null)
+    if(foundPerson === undefined)
     {
         container.innerHTML = "<h2>We weren't able to find what you wanted.</h2>";
     }
@@ -125,10 +111,10 @@ async function displayInfo(foundPerson)
 }
 
 
-async function searchPage(pageNumber, value)
+async function getPersonByName(value)
 {
     //fetch the information in the houses.json file
-    let starWarsData = await fetch("https://swapi.dev/api/people/?page=" + pageNumber);
+    let starWarsData = await fetch("https://swapi.dev/api/people/?search=" + value);
 
     //store that response as json
     let response = await starWarsData.json();
@@ -139,46 +125,19 @@ async function searchPage(pageNumber, value)
     try
     {
 
-        let person = 0;
-        let formattedName = "";
 
-       for(let i = 0; i < await response.results.length; i++)
-        {
-            person = await response.results[i];
-
-            formattedName = person.name.toLowerCase()
-
-            if(formattedName === value)
+            if(response.results.length === 1 && response.results[0].name.toLowerCase() === value)
             {
-                return person;
+                return response.results[0];
             }
-            else if(value.length === 1 && formattedName.startsWith(value))
+            else
             {
-                person.name += "~";
+                response.results[0].name += "~";
 
-                return person;
+                return response.results[0];
             }
-            else if (value.length > 1 && formattedName.includes(value))
-            {
-                person.name += "~";
 
-                return person;
-            }
-            else if(formattedName.includes("-"))
-            {
-                formattedName = formattedName.replaceAll("-", "");
 
-                if(formattedName === value)
-                {
-                    return person;
-                }
-
-            }
-        
-        
-        };
-
-        return null;
 
     }
     //this only runs if there is an error during the above process
@@ -203,7 +162,7 @@ async function getPersonByID(id)
     try
     {
 
-        return await response;
+        return response;
 
 
     }
