@@ -38,12 +38,12 @@ async function search(userInput)
     const container = document.getElementById("searchResults");
     container.innerHTML = "<h2>SEARCHING...</h2>";
 
-    let foundPerson = await getPersonByName(userInput);
+    let foundPeople = await getPersonByName(userInput);
 
 
-    console.log(foundPerson);
+    console.log(foundPeople);
 
-    if(foundPerson === null && userInput.includes(" ") === true)
+    if(foundPeople === null && userInput.includes(" ") === true)
     {
         const wordsWithinInput = userInput.split(" ");
         let newResults;
@@ -65,18 +65,18 @@ async function search(userInput)
     }
     else
     {
-        return foundPerson;
+        return foundPeople;
     }
 
 
 }
 
-async function displayInfo(foundPerson)
+async function displayInfo(foundPeople)
 {
 
     const container = document.getElementById("searchResults");
 
-    if(foundPerson === undefined)
+    if(foundPeople.length === 0)
     {
         container.innerHTML = "<h2>We weren't able to find what you wanted.</h2>";
     }
@@ -86,24 +86,31 @@ async function displayInfo(foundPerson)
 
         let html = "";
 
-        if(foundPerson.name.charAt(foundPerson.name.length - 1) === '~')
+        if(foundPeople[0].name.charAt(foundPeople[0].name.length - 1) != '~')
         {
             html += "<h2>We couldn't find exactly what you wanted.  Did you mean:</h2>";
-            foundPerson.name = foundPerson.name.slice(0, foundPerson.name.length - 1);
+        }
+        else
+        {
+            foundPeople[0].name = foundPeople[0].name.slice(0, foundPeople[0].name.length - 1);
         }
 
-        html += "<div id=searchContent>" + "<h2>" + foundPerson.name + "</h2>";
-        html += "<h3> <b>Birth Year:</b> " + foundPerson.birth_year + "</h3>";
-        html += "<h3> <b>Gender:</b> " + foundPerson.gender + "</h3>";
-        html += "<h3> <b>Height:</b> " + foundPerson.height + "</h3>";
-        html += "<h3> <b>Hair Color:</b> " + foundPerson.hair_color + "</h3>";
-        html += "<h3> <b>Eye Color:</b> " + foundPerson.eye_color + "</h3>";
-        html += "<h3> <b>Skin Color:</b> " + foundPerson.skin_color + "</h3>";
-        html += "<h3 id=planetInfo> <b>Homeworld:</b> " + await getHomeworld(foundPerson.homeworld) + "</h3>";
-        html += "<div id=filmInfo> <h3> <b>Has Appeared In:</b> </h3>" + await getListOfFilms(foundPerson.films) + "</div>";
+        for(let i = 0; i < foundPeople.length; i++)
+        {
+            html += "<div id=searchContent>" + "<h2>" + foundPeople[i].name + "</h2>";
+            html += "<h3> <b>Birth Year:</b> " + foundPeople[i].birth_year + "</h3>";
+            html += "<h3> <b>Gender:</b> " + foundPeople[i].gender + "</h3>";
+            html += "<h3> <b>Height:</b> " + foundPeople[i].height + "</h3>";
+            html += "<h3> <b>Hair Color:</b> " + foundPeople[i].hair_color + "</h3>";
+            html += "<h3> <b>Eye Color:</b> " + foundPeople[i].eye_color + "</h3>";
+            html += "<h3> <b>Skin Color:</b> " + foundPeople[i].skin_color + "</h3>";
+            html += "<h3 id=planetInfo> <b>Homeworld:</b> " + await getHomeworld(foundPeople[i].homeworld) + "</h3>";
+            html += "<div id=filmInfo> <h3> <b>Has Appeared In:</b> </h3>" + await getListOfFilms(foundPeople[i].films) + "</div>";
+            html += "</div>";
+        }
 
 
-        container.innerHTML = html + "</div>";
+        container.innerHTML = html;
     }
 
 
@@ -125,17 +132,12 @@ async function getPersonByName(value)
     try
     {
 
+        if(response.results.length === 1 && response.results[0].name.toLowerCase() === value)
+        {
+            response.results[0].name += "~";
+        }
 
-            if(response.results.length === 1 && response.results[0].name.toLowerCase() === value)
-            {
-                return response.results[0];
-            }
-            else
-            {
-                response.results[0].name += "~";
-
-                return response.results[0];
-            }
+        return response.results;
 
 
 
