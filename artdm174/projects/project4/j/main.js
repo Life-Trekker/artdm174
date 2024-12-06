@@ -28,6 +28,9 @@ function init()
     const searchBtn = document.getElementById("searchButton");
     searchBtn.addEventListener("click",  async () => { displayInfo( await search(getValue()) ) } );
 
+    const randomBtn = document.getElementById("randomButton");
+    randomBtn.addEventListener("click",  async () => { displayInfo( await getPersonByID( Math.floor( Math.random() * 82 ) + 1 ) ) } );
+
 }
 
 async function search(userInput)
@@ -121,6 +124,7 @@ async function displayInfo(foundPerson)
 
 }
 
+
 async function searchPage(pageNumber, value)
 {
     //fetch the information in the houses.json file
@@ -148,7 +152,13 @@ async function searchPage(pageNumber, value)
             {
                 return person;
             }
-            else if (formattedName.includes(value))
+            else if(value.length === 1 && formattedName.startsWith(value))
+            {
+                person.name += "~";
+
+                return person;
+            }
+            else if (value.length > 1 && formattedName.includes(value))
             {
                 person.name += "~";
 
@@ -177,6 +187,31 @@ async function searchPage(pageNumber, value)
         err => console.log("Oops!", err);
     }
 
+}
+
+async function getPersonByID(id)
+{
+    //fetch the information in the houses.json file
+    let starWarsData = await fetch("https://swapi.dev/api/people/" + id);
+
+    //store that response as json
+    let response = await starWarsData.json();
+
+    console.log(await response);
+    
+    //try to run the following code
+    try
+    {
+
+        return await response;
+
+
+    }
+    //this only runs if there is an error during the above process
+    catch
+    {
+        err => console.log("Oops!", err);
+    }
 }
 
 async function getListOfFilms(filmLinks)
