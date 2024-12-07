@@ -1,6 +1,6 @@
 /*
 Author: Josh T
-File Name: main.js for Lab 6
+File Name: main.js for Project 4
 */
 
 //run this js code after the DOM has finished loading
@@ -13,12 +13,8 @@ function getValue() {
     // Get the value of the input field
     let value = inputField.value;
 
-    value = value.toLowerCase();
 
-    // Display the value in an alert
-    console.log("Input value: " + value);
-
-    return value;
+    return value.toLowerCase();
 }
 
 
@@ -36,6 +32,7 @@ function init()
 async function search(userInput)
 {
     const container = document.getElementById("searchResults");
+
     container.innerHTML = "<h2>SEARCHING...</h2>";
 
     let foundPeople = await getPersonByName(userInput);
@@ -164,7 +161,7 @@ async function getPersonByID(id)
     try
     {
 
-        return response;
+        return [response];
 
 
     }
