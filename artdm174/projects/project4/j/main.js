@@ -308,13 +308,17 @@ function updatePastSearches()
 
         console.log(pastNames);
     
-        pastSearchesSelectBox.innerHTML = "<option>Past Searches</option>";
+        let HTML = "";
             
         for(let i = 0; i < pastNames.length - 1; i++)
         {
-            pastSearchesSelectBox.innerHTML += "<option id=pastName" + i + ">" + pastNames[i] + "</option>";
+            HTML += "<option id=pastName" + i + ">" + pastNames[i] + "</option>";
     
         }
+
+        HTML += "<option id=clearPastSearches>Clear Search History</option>";
+
+        pastSearchesSelectBox.innerHTML = HTML;
 
         for(let i = 0; i < pastNames.length - 1; i++)
         {
@@ -322,6 +326,8 @@ function updatePastSearches()
             document.getElementById("pastName" + i).addEventListener("click", () => { retrievePastSearch(pastNames[i]) } );
         
         }
+
+        document.getElementById("clearPastSearches").addEventListener("click", () => { clearSearchHistory() } );
     }
 
 }
@@ -334,4 +340,14 @@ async function retrievePastSearch(pastName)
     searchBox.value = pastName;
 
     displayInfo( await search(pastName.toLowerCase()) );
+}
+
+function clearSearchHistory()
+{
+    const pastSearchesSelectBox = document.getElementById("pastSearches");
+
+    pastSearchesSelectBox.innerHTML = "";
+
+    sessionStorage.removeItem("pastSearches");
+
 }

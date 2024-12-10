@@ -14,7 +14,7 @@ body, header, nav, main, footer, img, h1, h2, h3, ul, section, aside, figure, fi
 this background image is partially transparent, so it will let the randomly generated color shine through
 */
 body{
-    background-image: url(images/starBackground.jpeg);
+    background-image: url(images/starBackground.jpg);
     font-size: 20pt;
     color: white;
 
@@ -39,16 +39,25 @@ h3{
     margin: 2%
 }
 
+p{
+    font-size: 10pt;
+    margin: 0;
+}
+
 #searchBar
 {
     width: 50%;
     margin: auto;
 
     display: grid;
-    grid-template-columns: 5% 75% 5% 15%;
+    grid-template-columns: 5% 70% 5% 20%;
 
     align-items: center;
 
+}
+
+#searchBar div{
+    margin: 0 10%;
 }
 
 input{
@@ -60,9 +69,6 @@ input:focus {
     outline: 3px rgb(255, 196, 0) solid;
 }
 
-#pastSearches{
-        margin: auto;
-}
 
 
 #searchBar img{
