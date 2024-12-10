@@ -8,11 +8,29 @@ document.addEventListener('DOMContentLoaded', init);
 
 function getValue() {
     // Get the input element by its ID
-    let inputField = document.getElementById("myInput");
+    let inputField = document.getElementById("searchBox");
 
     // Get the value of the input field
     let value = inputField.value;
 
+    if (sessionStorage.pastSearches) {
+        const pastNames = sessionStorage.pastSearches.split(";;");
+        
+        for(let i = 0; i < pastNames.length; i++)
+        {
+            if (value === pastNames[i])
+            {
+                return value.toLowerCase();
+            }
+        }
+
+        sessionStorage.pastSearches = sessionStorage.pastSearches + value + ";;";
+        updatePastSearches();
+    } 
+    else {
+        sessionStorage.pastSearches = value + ";;";
+        updatePastSearches();
+    }
 
     return value.toLowerCase();
 }
@@ -26,6 +44,8 @@ function init()
 
     const randomBtn = document.getElementById("randomButton");
     randomBtn.addEventListener("click",  async () => { displayInfo( await getPersonByID( Math.floor( Math.random() * 82 ) + 1 ) ) } );
+
+    updatePastSearches();
 
 }
 
@@ -70,6 +90,8 @@ async function search(userInput)
 
 async function displayInfo(foundPeople)
 {
+
+    console.log("Displaying Info");
 
     const container = document.getElementById("searchResults");
 
@@ -208,6 +230,7 @@ async function getListOfFilms(filmLinks)
 async function getHomeworld(planetLink)
 {
 
+
         const planetData = await fetch(planetLink);
         const response = await planetData.json();
 
@@ -272,4 +295,43 @@ async function getHomeworld(planetLink)
     
 
 
+}
+
+function updatePastSearches()
+{
+
+    if(sessionStorage.pastSearches)
+    {
+        const pastSearchesSelectBox = document.getElementById("pastSearches");
+
+        const pastNames = sessionStorage.pastSearches.split(";;");
+
+        console.log(pastNames);
+    
+        pastSearchesSelectBox.innerHTML = "<option>Past Searches</option>";
+            
+        for(let i = 0; i < pastNames.length - 1; i++)
+        {
+            pastSearchesSelectBox.innerHTML += "<option id=pastName" + i + ">" + pastNames[i] + "</option>";
+    
+        }
+
+        for(let i = 0; i < pastNames.length - 1; i++)
+        {
+
+            document.getElementById("pastName" + i).addEventListener("click", () => { retrievePastSearch(pastNames[i]) } );
+        
+        }
+    }
+
+}
+
+async function retrievePastSearch(pastName)
+{
+
+    const searchBox = document.getElementById("searchBar");
+    searchBox.value = '';
+    searchBox.value = pastName;
+
+    displayInfo( await search(pastName.toLowerCase()) );
 }

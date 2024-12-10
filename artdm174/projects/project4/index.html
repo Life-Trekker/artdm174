@@ -21,15 +21,22 @@ File Name: index.html for Project 4
 
     <h1>Star Wars Search</h1>
 
-    <div id="searchBox" description="aa">
+    <div id="searchBar" description="aa">
         <img id="searchButton" src="images/GlassIcon.png">
-        <input type="text" id="myInput" placeholder="Enter a Star Wars character's name">
+        <input id="searchBox" type="text" onfocus="this.value=''" placeholder="Enter a Star Wars character's name">
         <img id="randomButton" src="images/RandomIcon.png">
+
+        <select id="pastSearches">
+            <option>Past Searches</option>
+        </select>
     </div>
+
+
 
     <div id="searchResults">
         <h2>The info of the character you searched will display here</h2>
     </div>
+
 
 </body>
 </html>
