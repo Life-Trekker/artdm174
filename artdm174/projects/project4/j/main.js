@@ -6,17 +6,6 @@ File Name: main.js for Project 4
 //run this js code after the DOM has finished loading
 document.addEventListener('DOMContentLoaded', init);
 
-function getValue() {
-    // Get the input element by its ID
-    let inputField = document.getElementById("searchBox");
-
-    // Get the value of the input field
-    let value = inputField.value;
-
-    storeNameInHistory(value);
-
-    return value.toLowerCase();
-}
 
 
 function init()
@@ -30,6 +19,18 @@ function init()
 
     updatePastSearches();
 
+}
+
+function getValue() {
+    // Get the input element by its ID
+    let inputField = document.getElementById("searchBox");
+
+    // Get the value of the input field
+    let value = inputField.value;
+
+    storeNameInHistory(value);
+
+    return value.toLowerCase();
 }
 
 async function search(userInput)
@@ -166,6 +167,8 @@ async function getPersonByID(id)
     try
     {
         storeNameInHistory(response.name);
+
+        response.name += "~";
 
         return [response];
 
@@ -348,10 +351,11 @@ function storeNameInHistory(value)
         }
 
         sessionStorage.pastSearches += value + ";;";
-        updatePastSearches();
     } 
-    else {
+    else 
+    {
         sessionStorage.pastSearches = value + ";;";
-        updatePastSearches();
     }
+
+    updatePastSearches();
 }

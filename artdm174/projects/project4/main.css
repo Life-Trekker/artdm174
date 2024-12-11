@@ -50,7 +50,8 @@ p{
     margin: auto;
 
     display: grid;
-    grid-template-columns: 5% 70% 5% 20%;
+    grid-template-columns: 7% 86% 7%;
+    grid-template-rows: 1fr 1fr;
 
     align-items: center;
 
@@ -63,6 +64,7 @@ p{
 input{
     margin: 0 1%;
     height: 100%;
+    font-size: 18pt;
 }
 
 input:focus {
@@ -77,6 +79,13 @@ input:focus {
 
     border-radius: 50%;
 
+}
+
+button{
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 5px;
+    color: white;
 }
 
 #searchResults{
