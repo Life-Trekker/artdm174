@@ -13,24 +13,7 @@ function getValue() {
     // Get the value of the input field
     let value = inputField.value;
 
-    if (sessionStorage.pastSearches) {
-        const pastNames = sessionStorage.pastSearches.split(";;");
-        
-        for(let i = 0; i < pastNames.length; i++)
-        {
-            if (value === pastNames[i])
-            {
-                return value.toLowerCase();
-            }
-        }
-
-        sessionStorage.pastSearches = sessionStorage.pastSearches + value + ";;";
-        updatePastSearches();
-    } 
-    else {
-        sessionStorage.pastSearches = value + ";;";
-        updatePastSearches();
-    }
+    storeNameInHistory(value);
 
     return value.toLowerCase();
 }
@@ -182,6 +165,7 @@ async function getPersonByID(id)
     //try to run the following code
     try
     {
+        storeNameInHistory(response.name);
 
         return [response];
 
@@ -294,7 +278,6 @@ async function getHomeworld(planetLink)
         }
     
 
-
 }
 
 function updatePastSearches()
@@ -305,8 +288,6 @@ function updatePastSearches()
         const pastSearchesSelectBox = document.getElementById("pastSearches");
 
         const pastNames = sessionStorage.pastSearches.split(";;");
-
-        console.log(pastNames);
     
         let HTML = "";
             
@@ -328,16 +309,17 @@ function updatePastSearches()
         }
 
         document.getElementById("clearPastSearches").addEventListener("click", () => { clearSearchHistory() } );
+
     }
 
+
 }
+
 
 async function retrievePastSearch(pastName)
 {
 
-    const searchBox = document.getElementById("searchBar");
-    searchBox.value = '';
-    searchBox.value = pastName;
+    document.getElementById("searchBox").value = pastName;
 
     displayInfo( await search(pastName.toLowerCase()) );
 }
@@ -350,4 +332,26 @@ function clearSearchHistory()
 
     sessionStorage.removeItem("pastSearches");
 
+}
+
+function storeNameInHistory(value)
+{
+    if (sessionStorage.pastSearches) {
+        const pastNames = sessionStorage.pastSearches.split(";;");
+        
+        for(let i = 0; i < pastNames.length; i++)
+        {
+            if (value === pastNames[i])
+            {
+                return;
+            }
+        }
+
+        sessionStorage.pastSearches += value + ";;";
+        updatePastSearches();
+    } 
+    else {
+        sessionStorage.pastSearches = value + ";;";
+        updatePastSearches();
+    }
 }
