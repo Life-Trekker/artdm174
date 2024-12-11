@@ -168,6 +168,8 @@ async function getPersonByID(id)
     {
         storeNameInHistory(response.name);
 
+        document.getElementById("searchBox").value = response.name;
+
         response.name += "~";
 
         return [response];
