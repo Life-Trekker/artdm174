@@ -11,11 +11,19 @@ document.addEventListener('DOMContentLoaded', init);
 function init()
 {
 
+    const searchBar = document.getElementById("searchBar");
+    searchBar.style.display = "grid";
+
+    const searchResults = document.getElementById("searchResults");
+    searchResults.innerHTML = "<h2>The information for the character you searched will display here.<h2>" +  
+    "<p>All Star Wars data courtesay of <a href=https://swapi.dev/>SWAPI</a>.   Data is current up until Episode 3.  " +  
+    "Searching for characters who first appeared in subseqent releases, such as those in Episodes 7 through 9, may yield unexpected results.</p>";
+
     const searchBtn = document.getElementById("searchButton");
-    searchBtn.addEventListener("click",  async () => { displayInfo( await search(getValue()) ) } );
+    searchBtn.addEventListener("click",  async () => { displayInfo( await search(getValue()) );   } );
 
     const randomBtn = document.getElementById("randomButton");
-    randomBtn.addEventListener("click",  async () => { displayInfo( await getPersonByID( Math.floor( Math.random() * 82 ) + 1 ) ) } );
+    randomBtn.addEventListener("click",  async () => {  displayInfo(await getPersonByID( Math.floor( Math.random() * 82 ) + 1 ) );  } );
 
     updatePastSearches();
 
@@ -107,6 +115,7 @@ async function displayInfo(foundPeople)
             html += "<h3> <b>Hair Color:</b> " + foundPeople[i].hair_color + "</h3>";
             html += "<h3> <b>Eye Color:</b> " + foundPeople[i].eye_color + "</h3>";
             html += "<h3> <b>Skin Color:</b> " + foundPeople[i].skin_color + "</h3>";
+            html += "<h3 id=speciesInfo> <b>Species:</b> " + await getSpecies(foundPeople[i].species[0]) + "</h3>";
             html += "<h3 id=planetInfo> <b>Homeworld:</b> " + await getHomeworld(foundPeople[i].homeworld) + "</h3>";
             html += "<div id=filmInfo> <h3> <b>Has Appeared In:</b> </h3>" + await getListOfFilms(foundPeople[i].films) + "</div>";
             html += "</div>";
@@ -114,6 +123,7 @@ async function displayInfo(foundPeople)
 
 
         container.innerHTML = html;
+        
     }
 
 
@@ -273,6 +283,34 @@ async function getHomeworld(planetLink)
 
 
     
+            
+    
+        }
+        //this only runs if there is an error during the above process
+        catch
+        {
+            err => console.log("Oops!", err);
+        }
+    
+
+}
+
+async function getSpecies(speciesLink)
+{
+
+    if(!speciesLink)
+    {
+        return "Human";
+    }
+
+        const speciesData = await fetch(speciesLink);
+        const response = await speciesData.json();
+
+        try
+        {
+    
+            return response.name;
+               
             
     
         }
