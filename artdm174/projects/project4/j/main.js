@@ -111,7 +111,7 @@ async function displayInfo(foundPeople)
             html += "<div id=searchContent>" + "<h2>" + foundPeople[i].name + "</h2>";
             html += "<h3> <b>Birth Year:</b> " + foundPeople[i].birth_year + "</h3>";
             html += "<h3> <b>Gender:</b> " + foundPeople[i].gender + "</h3>";
-            html += "<h3> <b>Height:</b> " + foundPeople[i].height + "</h3>";
+            html += "<h3> <b>Height:</b> " + foundPeople[i].height + " inch</h3>";
             html += "<h3> <b>Hair Color:</b> " + foundPeople[i].hair_color + "</h3>";
             html += "<h3> <b>Eye Color:</b> " + foundPeople[i].eye_color + "</h3>";
             html += "<h3> <b>Skin Color:</b> " + foundPeople[i].skin_color + "</h3>";
@@ -226,7 +226,42 @@ async function getListOfFilms(filmLinks)
 async function getFilmInfo(episodeNumber)
 {
 
-    const filmInfo = await fetch("test.json");
+    let movieTitle = "star+wars+:+episode+";
+    switch(episodeNumber)
+    {
+        case 1:
+            movieTitle += "I";
+        break;
+
+        case 2:
+            movieTitle += "II";
+        break;
+
+        case 3:
+            movieTitle += "III";
+        break;
+
+        case 4:
+            movieTitle += "IV";
+        break;
+
+        case 5:
+            movieTitle += "V";
+        break;
+
+        case 6:
+            movieTitle += "VI";
+        break;
+
+        case 7:
+            movieTitle += "VII";
+        break;
+
+
+        
+    }
+
+    const filmInfo = await fetch("https://1c9374c4-dadb-496d-9704-63e851db8798-00-130hiq61lnsv3.worf.replit.dev/filmSearch/" + movieTitle);
     const response = await filmInfo.json();
 
     let result = "";
@@ -239,8 +274,8 @@ async function getFilmInfo(episodeNumber)
         result += "<div id=posterAndText>"
         result += "<p><b>Released On:  </b>" + response.Released + "</p>";
         result += "<p><b>Runtime:  </b>" + response.Runtime + "</p>";
-        result += "<p><b>Director:  </b>" + response.Director + "</p>";
-        result += "<p><b>Writer:  </b>" + response.Writer + "</p>";
+        result += "<p><b>Director:   </b>" + response.Director + "</p>";
+        result += "<p><b>Writers:  </b><br>" + response.Writer.replaceAll(",", "<br>") + "</p>";
         result += "<p><b>Lead Actors:  </b><br>" + response.Actors.replaceAll(",", "<br>") + "</p>";
         result += "<p><b>Awards:  </b><br>" + response.Awards.replaceAll(".", ".<br>")  + "</p>";
         result += "<img src="+ response.Poster + "> </div>";
