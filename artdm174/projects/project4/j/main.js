@@ -207,10 +207,7 @@ async function getListOfFilms(filmLinks)
 
         try
         {
-    
-            result += "<li>Episode " + response.episode_id + " - " + response.title + "</li>";
-    
-            
+            result += "<li>" + await getFilmInfo(response.episode_id) + "<li>";
     
         }
         //this only runs if there is an error during the above process
@@ -224,6 +221,37 @@ async function getListOfFilms(filmLinks)
     }
 
     return result + "</ul>";
+}
+
+async function getFilmInfo(episodeNumber)
+{
+
+    const filmInfo = await fetch("test.json");
+    const response = await filmInfo.json();
+
+    let result = "";
+
+    try
+    {
+
+        result = "<h3>" + response.Title + "</h3>";
+        result += "<p>" + response.Plot + "</p>";
+        result += "<div id=posterAndText>"
+        result += "<p><b>Released On:  </b>" + response.Released + "</p>";
+        result += "<p><b>Runtime:  </b>" + response.Runtime + "</p>";
+        result += "<p><b>Director:  </b>" + response.Director + "</p>";
+        result += "<p><b>Writer:  </b>" + response.Writer + "</p>";
+        result += "<p><b>Lead Actors:  </b><br>" + response.Actors.replaceAll(",", "<br>") + "</p>";
+        result += "<p><b>Awards:  </b><br>" + response.Awards.replaceAll(".", ".<br>")  + "</p>";
+        result += "<img src="+ response.Poster + "> </div>";
+
+        return result;
+    }
+    catch
+    {
+        err => console.log("Oops!", err);
+    }
+
 }
 
 async function getHomeworld(planetLink)
