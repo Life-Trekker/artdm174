@@ -137,7 +137,7 @@ button:active {
     border-radius: 20px;
 
     display: grid;
-    grid-template-rows: repeat(6, 100%);
+    grid-template-rows: repeat(5, 100%);
     grid-template-columns: repeat(3, 1fr);
     align-items: center;
 }
@@ -152,14 +152,13 @@ button:active {
 
 
 #planetInfo,
-#filmInfo,
-#speciesInfo {
+#filmInfo{
     grid-column-start: 1;
     grid-column-end: 4;
 
 }
 
-#planetInfo, #speciesInfo {
+#planetInfo{
     margin: 2% 0;
 }
 
