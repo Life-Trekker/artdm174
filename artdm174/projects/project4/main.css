@@ -35,7 +35,9 @@ body {
 
 }
 
-/* center all h1 headings and give them some slight margin */
+/* make all h1 headings yellow and centered
+make their font size 9.5vmin and a maximum of 42pt
+*/
 h1 {
     margin: 2%;
     font-size: min(9.5vmin, 42pt);
@@ -43,26 +45,30 @@ h1 {
     color: rgb(255, 196, 0);
 }
 
+/* center all h2 headings and make their font size 7vmin and a maximum of 32pt */
 h2 {
     text-align: center;
     font-size: min(7vmin, 32pt);
 }
 
-
+/* make all h3 headings font size 4.5vmin and a maximum of 20pt */
 h3 {
     font-size: min(4.5vmin, 20pt);
     margin: 2%
 }
 
+/* make all paragraphs font size 1 vmin and a minimum of 10pt */
 p {
     font-size: max(10pt, 1vmin);
     margin: 0;
 }
 
+/* make all links yellow */
 a {
     color: rgb(255, 196, 0);
 }
 
+/* have the search bar display as a 2 by 3 grid and hide it by default */
 #searchBar {
     width: 80%;
     margin: auto;
@@ -77,6 +83,7 @@ a {
 
 }
 
+/* have the search history div be 55% wide and take up multiple grid columns */
 #searchBar div {
     padding: 2%;
 
@@ -89,18 +96,19 @@ a {
     grid-column-end: 3;
 }
 
+/* have the input tag fill the entire cell and 2.5vmin sized font */
 input {
     margin: 0 1%;
     height: 100%;
     font-size: 2.5vmin;
 }
 
+/* when the input tag is clicked, have it gain a yellow outline */
 input:focus {
     outline: 3px rgb(255, 196, 0) solid;
 }
 
-
-
+/*  */
 #searchBar img {
     width: 100%;
     height: 100%;
@@ -109,7 +117,7 @@ input:focus {
 
 }
 
-
+/*  */
 button {
     background-color: rgba(255, 255, 255, 0.2);
     border: none;
@@ -117,18 +125,22 @@ button {
     color: white;
 }
 
+/* when the button is clicked, have it play the pressed animation */
 button:active {
     animation: pressed 1s ease;
 }
 
+/* give the search results some margin  */
 #searchResults {
     margin: 2%;
 }
 
+/* give all paragraphs in the search result a tiny bit of margin */
 #searchResults p {
     margin: 10px;
 }
 
+/* have the search content display in a 5 by 3 grid with some margin, padding and rounded corners */
 #searchContent {
     background-color: rgba(255, 255, 255, 0.2);
     width: 80%;
@@ -142,6 +154,7 @@ button:active {
     align-items: center;
 }
 
+/* have the h2 heading in the search content span all the grid columns and give it a white border on the bottom */
 #searchContent h2 {
     grid-column-start: 1;
     grid-column-end: 4;
@@ -150,7 +163,7 @@ button:active {
     margin: 5px 0px;
 }
 
-
+/* have the planet info and film info span all the grid columns */
 #planetInfo,
 #filmInfo{
     grid-column-start: 1;
@@ -158,14 +171,17 @@ button:active {
 
 }
 
+/* give the planet info some extra margin */
 #planetInfo{
     margin: 2% 0;
 }
 
+/* give the h3 headings in the film info some extra margin */
 #filmInfo h3{
     margin: 2% 0;
 }
 
+/* display the film posters and the text next to them in a 4 by 2 grid */
 #posterAndText {
     display: grid;
     grid-template-columns: 45% 45%;
@@ -175,10 +191,12 @@ button:active {
 
 }
 
+/* have the paragraph text next to the poster be 12pt font */
 #posterAndText p {
     font-size: 12pt;
 }
 
+/* have the film posters take up their entire grid cells and have them span all their grid's columns */
 #posterAndText img {
     width: 100%;
     padding: 1%;
@@ -189,21 +207,24 @@ button:active {
     border-radius: 10px;
 }
 
-
+/* have all info titles be yellow, italic and in Courier New font */
 b {
     font-style: italic;
     font-family: 'Courier New', Courier, monospace;
     color: rgb(255, 196, 0);
 }
 
+/* remove the bullet points from the unordered list */
 ul {
     list-style-type: none;
 }
 
+/* have the text in the list items be 4vmin in size and a maximum of 18pt*/
 li {
     font-size: min(4vmin, 18pt);
 }
 
+/* have the select box have a white background color and rounded corners */
 select {
     margin: 1%;
 
@@ -214,20 +235,27 @@ select {
 
 }
 
+/* have all select options be yellow */
 select option {
     color: rgb(255, 196, 0);
 
 }
 
+
+/* for tablet sized screens */
 @media only screen and (min-width : 700px) {
+
+    /* change the dimensions of the search bar columns */
     #searchBar {
         grid-template-columns: 8% 84% 8%;
     }
 
+    /* make the search bar history */
     #searchBar div {
         width: 30%;
     }
 
+    /* change the poster grid to be 2 by 6 */
     #posterAndText {
         display: grid;
         grid-template-columns: 30% 40%;
@@ -236,6 +264,7 @@ select option {
 
     }
 
+    /* have the poster go below the text and span all the grid rows */
     #posterAndText img {
 
         grid-row-start: 1;
@@ -248,6 +277,7 @@ select option {
 }
 
 
+/* on desktop sized screens, have the search bar and content resize */
 @media only screen and (min-width : 1200px) {
     #searchBar {
         grid-template-columns: 7% 86% 7%;

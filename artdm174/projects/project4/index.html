@@ -22,15 +22,29 @@ File Name: index.html for Project 4
 </head>
 <body>
 
+    <!-- add a title to the page -->
     <h1>Star Wars Character Search</h1>
 
+    <!-- make a div to hold the search input box, the search history, the search button and the random button -->
     <div id="searchBar">
+        
+        <!-- add a button that will search the SWAPI for the name the user has entered -->
         <button id="searchButton"><p>Search</p><img src="images/GlassIcon.png" alt="a yellow magnifying glass icon.  click this to search after you type in the character name"></button>
+
+        <!-- the user will type the name they want to search into an input tag with type text -->
+        <!-- when it is clicked, it will erase the text inside it -->
         <input id="searchBox" type="text" onfocus="this.value=''" placeholder="Enter a Star Wars character's name">
+
+        <!-- add a button that will search for a random star wars character -->
         <button id="randomButton"><p>Random</p><img src="images/RandomIcon.png" alt="a yellow question mark icon.  click this to get info on a random star wars character"></button>
 
+        <!-- add a div to hold the search history -->
         <div>
+
+            <!-- add a subheading -->
             <p>Search History:</p>
+
+            <!-- add a select box that will be populated with the names the user has searched before -->
             <select id="pastSearches">
             </select>
         </div>
@@ -38,7 +52,7 @@ File Name: index.html for Project 4
     </div>
 
 
-
+    <!-- add a div to hold the results from the most recent search -->
     <div id="searchResults">
         <h2>Looks like you don't have JavaScript enabled.<br> 
             Unfortunately, this page won't work without it.<br>
